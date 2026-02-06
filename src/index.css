@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: rgb(249, 250, 251);
+}
+/* ================= SWAAYATT LOGO ================= */
+
+@font-face {
+  font-family: "Font3";
+  src: url("./assets/fonts/Font3-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Font3";
+  src: url("./assets/fonts/Font3-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+body {
+  font-family: "Font3", system-ui, sans-serif;
+}
+@font-face {
+  font-family: "BillingFont";
+  src: url("/fonts/BillingFont-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: "SwaayattFont";
+  src: url("/fonts/Montserrat-Swaayatt.woff2") format("woff2");
+  font-weight: 700 800;
+  font-display: swap;
+}
