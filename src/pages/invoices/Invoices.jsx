@@ -21,7 +21,7 @@ export const FilterIcon = () => (
 
 export default function Invoices() {
   return (
- <div className="w-full h-full bg-[#F8FAFC]">
+ <div className="w-full min-h-screen bg-[#F8FAFC]">
 
 
 
@@ -207,7 +207,7 @@ export default function Invoices() {
       {/* ================= TABLE ================= */}
 {/* ================= TABLE ================= */}
       {/* ================= TABLE ================= */}
-      <div className="bg-white rounded-[0.6vw] border overflow-hidden w-[82.45vw]">
+      <div className="bg-white rounded-[0.6vw] border overflow-hidden w-full">
 
         {/* HEADER */}
         <div className="bg-[#FCFCFD] px-[0.83vw]">
@@ -217,9 +217,9 @@ export default function Invoices() {
             <div className="w-[11.25vw] h-[5.56vh] flex items-center">Amount</div>
             <div className="w-[14.43vw] h-[5.56vh] flex items-center">Due Date</div>
             <div className="w-[13.68vw] h-[5.56vh] flex items-center pl-[0.5vw]">Status</div>
-            <div className="w-[11.26vw] h-[5.56vh] flex items-center justify-end pr-[2.7vw]">
-              Actions
-            </div>
+            <div className="w-[11.26vw] h-[5.56vh] flex items-center justify-end pr-0">
+  Actions
+</div>
           </div>
         </div>
 
@@ -298,12 +298,20 @@ const TableRow = ({ invoice, service, amount, date, status }) => {
             </span>
           </div>
 
-          <div className="w-[11.26vw] flex justify-end pr-[2.7vw] text-[#0EA5E9] gap-[1vw]">
-            <button>View</button>
-            <button className="flex items-center gap-1">
-              Download <Download size={12} />
-            </button>
-          </div>
+         <div className="w-[11.26vw] h-[5.56vh] flex items-center justify-end gap-[1.2vw] pr-0">
+  
+  {/* VIEW */}
+  <button className="text-[0.73vw] text-[rgba(0,183,255,1)] hover:text-[#2563EB] font-medium">
+    View
+  </button>
+
+  {/* DOWNLOAD */}
+  <button className="flex items-center gap-[0.25vw] text-[0.73vw] text-[rgba(0,183,255,1)] hover:text-[#2563EB] font-medium">
+    Download
+    <Download size={12} />
+  </button>
+
+</div>
         </div>
       </div>
 

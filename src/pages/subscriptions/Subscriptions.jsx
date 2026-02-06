@@ -156,13 +156,34 @@ export default function Subscriptions() {
   return (
     <div className="w-full py-2" style={{ fontFamily: "'Rethink Sans', sans-serif" }}>
       {/* HEADER */}
-      <div className="mb-6">
-        <h1 className="text-[30px] leading-[36px] font-semibold tracking-tight text-[#0F1729]">
+           <div style={{ marginBottom: "3.2vh" }}>
+        
+        <h1
+          style={{
+            fontFamily: "Rethink Sans, sans-serif",
+            fontWeight: 600,
+            fontSize: "2.08vw",        // ≈ 30px
+            lineHeight: "2.5vw",       // ≈ 36px
+            letterSpacing: "-0.052vw", // ≈ -0.75px
+            color: "rgba(15, 23, 41, 1)",
+          }}
+        >
           Subscriptions
         </h1>
-        <p className="mt-2 text-base leading-6 text-[#828A96]">
+
+        <p
+          style={{
+            marginTop: "0.6vh",
+            fontFamily: "Rethink Sans, sans-serif",
+            fontWeight: 400,
+            fontSize: "1.11vw",        // ≈ 16px
+            lineHeight: "1.67vw",      // ≈ 24px
+            color: "rgba(130, 138, 150, 1)",
+          }}
+        >
           Manage all your active services and subscriptions
         </p>
+
       </div>
 
       {/* SEARCH + ACTIONS */}

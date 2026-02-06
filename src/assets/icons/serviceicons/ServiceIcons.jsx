@@ -337,3 +337,145 @@ export const DisconnectedBadge = () => (
     </text>
   </svg>
 );
+
+export const AlertIcon = () => (
+  <svg
+    width="40"
+    height="40"
+    viewBox="0 0 40 40"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect width="40" height="40" rx="12" fill="#E7F6FE" />
+    <path
+      d="M15 16.6667C15 15.3407 15.5268 14.0689 16.4645 13.1312C17.4021 12.1935 18.6739 11.6667 20 11.6667C21.3261 11.6667 22.5979 12.1935 23.5355 13.1312C24.4732 14.0689 25 15.3407 25 16.6667C25 22.5001 27.5 24.1667 27.5 24.1667H12.5C12.5 24.1667 15 22.5001 15 16.6667Z"
+      stroke="#0A76A9"
+      strokeWidth="1.66667"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M18.583 27.5C18.7225 27.7537 18.9275 27.9653 19.1768 28.1127C19.426 28.26 19.7102 28.3378 19.9997 28.3378C20.2892 28.3378 20.5734 28.26 20.8226 28.1127C21.0718 27.9653 21.2769 27.7537 21.4163 27.5"
+      stroke="#0A76A9"
+      strokeWidth="1.66667"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+export const BackArrowIcon = () => (
+  <svg
+    width="40"
+    height="40"
+    viewBox="0 0 40 40"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      x="0.5"
+      y="0.5"
+      width="39"
+      height="39"
+      rx="11.5"
+      fill="white"
+    />
+    <rect
+      x="0.5"
+      y="0.5"
+      width="39"
+      height="39"
+      rx="11.5"
+      stroke="#E3E7ED"
+    />
+    <path
+      d="M20 25.8333L14.1666 20L20 14.1666"
+      stroke="#65758B"
+      strokeWidth="1.66667"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M25.8333 20H14.1666"
+      stroke="#65758B"
+      strokeWidth="1.66667"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const OpenServiceIcon = () => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M10 2H14V6"
+      stroke="#0F1729"
+      strokeWidth="1.33333"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M6.66675 9.33333L14.0001 2"
+      stroke="#0F1729"
+      strokeWidth="1.33333"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M12 8.66667V12.6667C12 13.0203 11.8595 13.3594 11.6095 13.6095C11.3594 13.8595 11.0203 14 10.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V5.33333C2 4.97971 2.14048 4.64057 2.39052 4.39052C2.64057 4.14048 2.97971 4 3.33333 4H7.33333"
+      stroke="#0F1729"
+      strokeWidth="1.33333"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const InvoiceUserIcon = () => (
+  <svg
+    width="40"
+    height="40"
+    viewBox="0 0 40 40"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect width="40" height="40" rx="12" fill="#E7F6FE" />
+
+    <path
+      d="M23.3333 27.5V25.8333C23.3333 24.9493 22.9821 24.1014 22.357 23.4763C21.7319 22.8512 20.884 22.5 20 22.5H15C14.1159 22.5 13.2681 22.8512 12.6429 23.4763C12.0178 24.1014 11.6666 24.9493 11.6666 25.8333V27.5"
+      stroke="#0A76A9"
+      strokeWidth="1.66667"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+
+    <path
+      d="M17.5 19.1667C19.3409 19.1667 20.8333 17.6743 20.8333 15.8333C20.8333 13.9924 19.3409 12.5 17.5 12.5C15.659 12.5 14.1666 13.9924 14.1666 15.8333C14.1666 17.6743 15.659 19.1667 17.5 19.1667Z"
+      stroke="#0A76A9"
+      strokeWidth="1.66667"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+
+    <path
+      d="M28.3334 27.4999V25.8333C28.3328 25.0947 28.087 24.3773 27.6345 23.7935C27.182 23.2098 26.5485 22.7929 25.8334 22.6083"
+      stroke="#0A76A9"
+      strokeWidth="1.66667"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+
+    <path
+      d="M23.3334 12.6083C24.0504 12.7919 24.6859 13.2089 25.1397 13.7935C25.5936 14.3782 25.8399 15.0973 25.8399 15.8374C25.8399 16.5776 25.5936 17.2967 25.1397 17.8814C24.6859 18.466 24.0504 18.883 23.3334 19.0666"
+      stroke="#0A76A9"
+      strokeWidth="1.66667"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);

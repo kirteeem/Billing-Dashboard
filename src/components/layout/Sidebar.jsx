@@ -227,7 +227,11 @@ export default function Sidebar() {
               Connected Services
             </p>
             <div className="flex flex-col">
-              <ServiceItem name="Amazon AWS" icon={<AmazonLogo />} />
+              <ServiceItem
+  name="Amazon AWS"
+  icon={<AmazonLogo />}
+  to="/services/aws"
+/>
               <ServiceItem name="Go Daddy" icon={<GoDaddyLogo />} />
               <ServiceItem name="Bunny CDN" image={bunnyLogo} />
               <ServiceItem name="Vimeo" image={vimeoLogo} />
@@ -353,51 +357,34 @@ function NavItem({ to, icon, label }) {
 }
 
 
-function ServiceItem({ name, icon, image }) {
-  return (
+function ServiceItem({ name, icon, image, to }) {
+  const content = (
     <div
       className="flex items-center justify-between px-3 cursor-pointer group transition-all"
-      style={{
-        height: "32px",
-      }}
+      style={{ height: "32px" }}
     >
       <div className="flex items-center gap-3">
-        {/* ICON */}
         <div className="w-[18px] h-[18px] flex items-center justify-center overflow-hidden">
-          {icon ? (
-            icon
-          ) : (
-            <img
-              src={image}
-              alt={name}
-              className="w-full h-full object-contain"
-            />
-          )}
+          {icon ? icon : <img src={image} alt={name} className="w-full h-full object-contain" />}
         </div>
 
-        {/* TEXT */}
         <span
+          className="group-hover:text-gray-900"
           style={{
-            fontFamily: "Rethink Sans, sans-serif",
+            fontFamily: "Rethink Sans",
             fontWeight: 500,
             fontSize: "14px",
             lineHeight: "20px",
-            letterSpacing: "0%",
-            color: "rgba(130, 138, 150, 1)",
-            display: "flex",
-            alignItems: "center",
+            color: "rgba(130,138,150,1)",
           }}
-          className="group-hover:text-gray-900"
         >
           {name}
         </span>
       </div>
 
-      {/* CHEVRON */}
-      <ChevronRight
-        size={14}
-        className="text-gray-300 group-hover:text-gray-500"
-      />
+      <ChevronRight size={14} className="text-gray-300 group-hover:text-gray-500" />
     </div>
   );
+
+  return to ? <NavLink to={to}>{content}</NavLink> : content;
 }
