@@ -22,7 +22,7 @@ const ViewAllButton = ({ color = "#00B7FF", size = 1 }) => {
 };
 
 const AuthO = () => (
-  <svg style={{ width: '2.4vw', height: '2.4vw' }} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg style={{ width: '2.4vw', height: '2.4vw', minWidth: '32px', minHeight: '32px' }} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect width="48" height="48" rx="14" fill="#FFFFFF" />
     <rect x="14" y="22" width="20" height="16" rx="3" fill="#FACC15" />
     <rect x="18" y="14" width="12" height="10" rx="6" fill="#FACC15" />
@@ -35,7 +35,7 @@ const AuthO = () => (
 );
 
 const GoDaddyLogo = () => (
-  <svg style={{ width: '2vw', height: '2vw' }} viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg style={{ width: '2vw', height: '2vw', minWidth: '28px', minHeight: '28px' }} viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g clipPath="url(#clip0_107_312)">
       <path d="M23.0031 3.30423C20.2317 1.57263 16.5831 1.98518 13.329 4.02988C10.085 1.98518 6.43421 1.57263 3.66613 3.30423C-0.712617 6.04066 -1.24498 13.088 2.47819 19.0458C5.22254 23.4381 9.51425 26.0118 13.3346 25.9643C17.155 26.0118 21.4467 23.4381 24.1911 19.0458C27.9097 13.088 27.3819 6.04066 23.0031 3.30423ZM4.49124 17.7878C3.72353 16.5707 3.1443 15.2446 2.7732 13.8544C2.44349 12.6475 2.31742 11.3942 2.4002 10.1459C2.56635 7.94407 3.46267 6.22942 4.92301 5.31728C6.38334 4.40513 8.31388 4.34975 10.3699 5.16582C10.6784 5.28902 10.9836 5.43143 11.2865 5.58855C10.144 6.6303 9.15057 7.82458 8.33422 9.13766C6.07364 12.7546 5.38417 16.7795 6.17311 19.9884C5.54403 19.3098 4.98088 18.5729 4.49124 17.7878ZM23.8972 13.8532C23.5256 15.2433 22.9464 16.5694 22.1791 17.7866C21.6891 18.5729 21.126 19.3113 20.4973 19.9918C21.2026 17.1152 20.7233 13.591 18.994 10.286C18.9664 10.2316 18.9276 10.1836 18.8803 10.145C18.8329 10.1065 18.778 10.0784 18.7191 10.0624C18.6602 10.0464 18.5986 10.043 18.5383 10.0523C18.478 10.0616 18.4203 10.0835 18.3689 10.1165L12.9775 13.4848C12.9283 13.5154 12.8856 13.5555 12.852 13.6027C12.8183 13.6499 12.7943 13.7032 12.7813 13.7597C12.7682 13.8162 12.7665 13.8747 12.7761 13.9319C12.7857 13.989 12.8065 14.0437 12.8373 14.0928L13.6285 15.3576C13.6591 15.4068 13.6991 15.4494 13.7461 15.4831C13.7932 15.5167 13.8465 15.5407 13.9029 15.5538C13.9593 15.5668 14.0177 15.5685 14.0748 15.5589C14.1318 15.5493 14.1864 15.5286 14.2355 15.4978L17.7303 13.3141C17.8434 13.6532 17.9564 13.9923 18.0412 14.3313C18.3708 15.5366 18.4972 16.7884 18.4153 18.0353C18.2491 20.236 17.3528 21.9506 15.8925 22.8639C15.1392 23.3244 14.2762 23.5743 13.3934 23.5873H13.2815C12.3987 23.5745 11.5355 23.3247 10.7824 22.8639C9.32097 21.9506 8.42465 20.236 8.25849 18.0353C8.17622 16.787 8.30228 15.5337 8.63149 14.3268C9.38899 11.5346 10.9548 9.0285 13.1323 7.12348C14.0713 6.29926 15.1408 5.63692 16.2971 5.16356C18.3475 4.34749 20.2814 4.40174 21.7429 5.31502C23.2043 6.22829 24.0995 7.94181 24.2657 10.1436C24.3495 11.392 24.225 12.6457 23.8972 13.8532Z" fill="#1BDBDB"/>
     </g>
@@ -44,7 +44,7 @@ const GoDaddyLogo = () => (
 );
 
 const Slack = () => (
-  <svg style={{ width: '2.2vw', height: '2.2vw' }} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg style={{ width: '2.2vw', height: '2.2vw', minWidth: '30px', minHeight: '30px' }} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect width="40" height="40" rx="10" fill="#F3F5F7" />
     <g clipPath="url(#clip0_107_484)">
       <path d="M12.3452 23.0664C12.3452 24.5935 11.0997 25.8407 9.57245 25.8407C8.04536 25.8407 6.79828 24.5935 6.79828 23.0664C6.79828 21.5393 8.04557 20.292 9.57265 20.292H12.3454L12.3452 23.0664ZM13.7429 23.0664C13.7429 21.5393 14.9902 20.292 16.5172 20.292C18.0443 20.292 19.2916 21.5391 19.2916 23.0664V30.0112C19.2916 31.5382 18.0445 32.7855 16.5172 32.7855C14.9902 32.7855 13.7429 31.5382 13.7429 30.0112V23.0664Z" fill="#DE1C59" />
@@ -57,7 +57,7 @@ const Slack = () => (
 );
 
 const AWS = () => (
-  <svg style={{ width: '2.2vw', height: '2.2vw' }} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg style={{ width: '2.2vw', height: '2.2vw', minWidth: '30px', minHeight: '30px' }} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect width="40" height="40" rx="10" fill="#F3F5F7" />
     <g clipPath="url(#clip0_107_152)">
       <g clipPath="url(#clip1_107_152)">
@@ -73,38 +73,78 @@ const AWS = () => (
   </svg>
 );
 
+/* ================= MEDIA QUERIES ================= */
+const useResponsiveStyles = () => {
+  const [isMobile, setIsMobile] = React.useState(false);
+  const [isTablet, setIsTablet] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return { isMobile, isTablet };
+};
+
 /* ================= MAIN ================= */
 
 const DashboardTable = () => {
-  return (
-    <section style={{ width: '100%', marginTop: '3vh' }}>
-      <div style={{ display: 'flex', gap: '2vw', alignItems: 'stretch' }}>
+  const { isMobile, isTablet } = useResponsiveStyles();
 
-        {/* ================= LEFT : UPCOMING PAYMENTS ================= */}
-<div
-  style={{
+  // Container styles based on device
+  const containerStyle = {
+    width: '100%',
+    marginTop: isMobile ? '2vh' : '3vh',
+    padding: isMobile || isTablet ? '0' : undefined,
+  };
+
+  const mainGridStyle = {
+    display: 'flex',
+    flexDirection: isMobile ? 'column' : 'row',
+    gap: isMobile ? '2vh' : '2vw',
+    alignItems: 'stretch',
+  };
+
+  const upcomingPaymentsStyle = {
     backgroundColor: 'white',
     border: '0.1vh solid #E5EAF1',
-    borderRadius: '1.1vw',
-    padding: '2.4vh 1.7vw',
-    width: '50vw',          // ✅ 720px equivalent
+    borderRadius: isMobile ? '0' : '1.1vw',
+    padding: isMobile ? '2vh 4vw' : isTablet ? '2vh 3vw' : '2.4vh 1.7vw',
+    width: isMobile || isTablet ? '100%' : '50vw',
     display: 'flex',
     flexDirection: 'column',
-  }}
->
+  };
 
+  const recentInvoicesStyle = {
+    backgroundColor: 'white',
+    border: '0.1vh solid #E5EAF1',
+    borderRadius: isMobile ? '0' : '1.1vw',
+    padding: isMobile ? '2vh 4vw' : isTablet ? '2vh 3vw' : '2.7vh 1.7vw',
+    width: isMobile || isTablet ? '100%' : '57.8vw',
+    display: 'flex',
+    flexDirection: 'column',
+  };
 
-    
+  return (
+    <section style={containerStyle}>
+      <div style={mainGridStyle}>
 
-
+        {/* ================= LEFT : UPCOMING PAYMENTS ================= */}
+        <div style={upcomingPaymentsStyle}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2.2vh' }}>
             <div>
               <h3
                 style={{
                   fontFamily: "'Rethink Sans', sans-serif",
-                  fontSize: "1.2vw",
+                  fontSize: isMobile ? "4vw" : isTablet ? "2.5vw" : "1.2vw",
                   fontWeight: 600,
-                  lineHeight: "3vh",
+                  lineHeight: isMobile ? "4vh" : "3vh",
                   color: "rgba(15, 23, 41, 1)",
                 }}
               >
@@ -113,7 +153,7 @@ const DashboardTable = () => {
               <p
                 style={{
                   fontFamily: "'Rethink Sans', sans-serif",
-                  fontSize: "0.9vw",
+                  fontSize: isMobile ? "3.5vw" : isTablet ? "2vw" : "0.9vw",
                   color: "rgba(130, 138, 150, 1)",
                 }}
               >
@@ -121,128 +161,126 @@ const DashboardTable = () => {
               </p>
             </div>
 
-            <ViewAllButton />
+            {!isMobile && <ViewAllButton />}
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5vh' }}>
-         <PaymentItem
-  icon={<AuthO />}
-  name="Auth0"
-  date="Due Jan 28, 2026"
-  amount="$450"
-  statusText="6 days overdue"
-  statusColor="#EF4444"
-  bg="#FDF4F4"
-  border="#FECACA"
-/>
+            <PaymentItem
+              icon={<AuthO />}
+              name="Auth0"
+              date="Due Jan 28, 2026"
+              amount="$450"
+              statusText="6 days overdue"
+              statusColor="#EF4444"
+              bg="#FDF4F4"
+              border="#FECACA"
+              isMobile={isMobile}
+              isTablet={isTablet}
+            />
 
-<PaymentItem
-  icon={<GoDaddyLogo />}
-  name="GoDaddy"
-  date="Due Feb 3, 2026"
-  amount="$890"
-  statusText="Due today"
-  statusColor="#F59E0B"
-  bg="#FEFAF2"
-  border="#FED7AA"
-/>
+            <PaymentItem
+              icon={<GoDaddyLogo />}
+              name="GoDaddy"
+              date="Due Feb 3, 2026"
+              amount="$890"
+              statusText="Due today"
+              statusColor="#F59E0B"
+              bg="#FEFAF2"
+              border="#FED7AA"
+              isMobile={isMobile}
+              isTablet={isTablet}
+            />
 
-<PaymentItem
-  icon={<img src={bunnyLogo} style={{ width: "2.2vw", height: "2.2vw" }} />}
-  name="Bunny CDN"
-  date="Due Feb 5, 2026"
-  amount="$195"
-  statusText="2 days"
-  statusColor="#F59E0B"
-  bg="#FEFAF2"
-  border="#FED7AA"
-/>
+            <PaymentItem
+              icon={<img src={bunnyLogo} style={{ width: isMobile ? "8vw" : isTablet ? "4vw" : "2.2vw", height: isMobile ? "8vw" : isTablet ? "4vw" : "2.2vw" }} />}
+              name="Bunny CDN"
+              date="Due Feb 5, 2026"
+              amount="$195"
+              statusText="2 days"
+              statusColor="#F59E0B"
+              bg="#FEFAF2"
+              border="#FED7AA"
+              isMobile={isMobile}
+              isTablet={isTablet}
+            />
 
-<PaymentItem
-  icon={<Slack />}
-  name="Slack"
-  date="Due Feb 10, 2026"
-  amount="$1,250"
-  statusText="7 days"
-  statusColor="#64748B"
-/>
+            <PaymentItem
+              icon={<Slack />}
+              name="Slack"
+              date="Due Feb 10, 2026"
+              amount="$1,250"
+              statusText="7 days"
+              statusColor="#64748B"
+              isMobile={isMobile}
+              isTablet={isTablet}
+            />
 
-<PaymentItem
-  icon={<AWS />}
-  name="Amazon Web Services"
-  date="Due Feb 15, 2026"
-  amount="$4,920"
-  statusText="12 days"
-  statusColor="#64748B"
-/>
-
+            <PaymentItem
+              icon={<AWS />}
+              name="Amazon Web Services"
+              date="Due Feb 15, 2026"
+              amount="$4,920"
+              statusText="12 days"
+              statusColor="#64748B"
+              isMobile={isMobile}
+              isTablet={isTablet}
+            />
           </div>
         </div>
 
         {/* ================= RIGHT : RECENT INVOICES ================= */}
-<div
-  style={{
-    backgroundColor: 'white',
-    border: '0.1vh solid #E5EAF1',
-    borderRadius: '1.1vw',
-    padding: '2.7vh 1.7vw',
-    width: '57.8vw',
-    display: 'flex',
-    flexDirection: 'column',
-  }}
->
-
-
-
+        <div style={recentInvoicesStyle}>
           {/* Header */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.2vh' }}>
             <h3
               style={{
                 fontFamily: "'Rethink Sans', sans-serif",
-                fontSize: "1.2vw",
+                fontSize: isMobile ? "4vw" : isTablet ? "2.5vw" : "1.2vw",
                 fontWeight: 600,
                 color: "rgba(15, 23, 41, 1)",
               }}
             >
               Recent Invoices
             </h3>
-            <ViewAllButton/>
+            {!isMobile && <ViewAllButton />}
           </div>
 
           {/* TABLE WRAPPER */}
-          <div style={{ border: '0.1vh solid #E5EAF1', borderRadius: '0.9vw', overflow: 'hidden' }}>
-            {/* Header Row */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '2.1fr 1fr 1.2fr 1.1fr 0.8fr',
-                padding: '1.6vh 1.4vw',
-                borderBottom: '0.1vh solid #E5EAF1',
-                backgroundColor: '#FCFCFD',
-                fontFamily: "'Rethink Sans', sans-serif",
-                fontSize: "1.3vh",
-                fontWeight: 500,
-                letterSpacing: "0.08vh",
-                color: "rgba(130, 138, 150, 1)",
-              }}
-            >
-              <span style={{ textAlign: 'left' }}>Service</span>
-              <span style={{ textAlign: 'left' }}>Amount</span>
-              <span style={{ textAlign: 'left' }}>Due Date</span>
-              <span style={{ textAlign: 'left' }}>Status</span>
-              <span style={{ textAlign: 'right', paddingRight: '1vw' }}>View</span>
-            </div>
+          <div style={{ border: '0.1vh solid #E5EAF1', borderRadius: isMobile ? '0' : '0.9vw', overflow: isMobile ? 'auto' : 'hidden' }}>
+            {/* Header Row - Hide on mobile */}
+            {!isMobile && (
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: isTablet ? '2fr 1fr 1.2fr 1fr 0.8fr' : '2.1fr 1fr 1.2fr 1.1fr 0.8fr',
+                  padding: isTablet ? '1.6vh 2vw' : '1.6vh 1.4vw',
+                  borderBottom: '0.1vh solid #E5EAF1',
+                  backgroundColor: '#FCFCFD',
+                  fontFamily: "'Rethink Sans', sans-serif",
+                  fontSize: isTablet ? "1.6vh" : "1.3vh",
+                  fontWeight: 500,
+                  letterSpacing: "0.08vh",
+                  color: "rgba(130, 138, 150, 1)",
+                }}
+              >
+                <span style={{ textAlign: 'left' }}>Service</span>
+                <span style={{ textAlign: 'left' }}>Amount</span>
+                <span style={{ textAlign: 'left' }}>Due Date</span>
+                <span style={{ textAlign: 'left' }}>Status</span>
+                <span style={{ textAlign: 'right', paddingRight: '1vw' }}>View</span>
+              </div>
+            )}
 
             {/* Rows */}
-            <InvoiceRow service="Amazon Web Services" amount="$4,920" date="Feb 15, 2026" status="Pending" invoice="INV-008" />
-            <InvoiceRow service="Slack" amount="$1,250" date="Feb 10, 2026" status="Pending" invoice="INV-009" />
-            <InvoiceRow service="Bunny CDN" amount="$195" date="Feb 5, 2026" status="Pending" invoice="INV-010" />
-            <InvoiceRow service="Datadog" amount="$890" date="Feb 3, 2026" status="Pending" invoice="INV-006" />
-            <InvoiceRow service="Auth0" amount="$450" date="Jan 28, 2026" status="Overdue" invoice="INV-007" />
-            <InvoiceRow service="Notion" amount="$480" date="Jan 18, 2026" status="Paid" invoice="INV-005" />
-            <InvoiceRow service="Amazon Web Servies" amount="$4,850" date="Jan 15, 2026" status="Paid" invoice="INV-001" />
-            <InvoiceRow service="Slack" amount="$1,250" date="Jan 10, 2026" status="Paid" invoice="INV-002" />
-            <InvoiceRow service="Github" amount="$2,100" date="Jan 8, 2026" status="Paid" invoice="INV-004" />
+            <InvoiceRow service="Amazon Web Services" amount="$4,920" date="Feb 15, 2026" status="Pending" invoice="INV-008" isMobile={isMobile} isTablet={isTablet} />
+            <InvoiceRow service="Slack" amount="$1,250" date="Feb 10, 2026" status="Pending" invoice="INV-009" isMobile={isMobile} isTablet={isTablet} />
+            <InvoiceRow service="Bunny CDN" amount="$195" date="Feb 5, 2026" status="Pending" invoice="INV-010" isMobile={isMobile} isTablet={isTablet} />
+            <InvoiceRow service="Datadog" amount="$890" date="Feb 3, 2026" status="Pending" invoice="INV-006" isMobile={isMobile} isTablet={isTablet} />
+            <InvoiceRow service="Auth0" amount="$450" date="Jan 28, 2026" status="Overdue" invoice="INV-007" isMobile={isMobile} isTablet={isTablet} />
+            <InvoiceRow service="Notion" amount="$480" date="Jan 18, 2026" status="Paid" invoice="INV-005" isMobile={isMobile} isTablet={isTablet} />
+            <InvoiceRow service="Amazon Web Servies" amount="$4,850" date="Jan 15, 2026" status="Paid" invoice="INV-001" isMobile={isMobile} isTablet={isTablet} />
+            <InvoiceRow service="Slack" amount="$1,250" date="Jan 10, 2026" status="Paid" invoice="INV-002" isMobile={isMobile} isTablet={isTablet} />
+            <InvoiceRow service="Github" amount="$2,100" date="Jan 8, 2026" status="Paid" invoice="INV-004" isMobile={isMobile} isTablet={isTablet} />
           </div>
         </div>
       </div>
@@ -260,14 +298,16 @@ const PaymentItem = ({
   statusColor = "#64748B",
   bg = "white",
   border = "#E5E7EB",
+  isMobile,
+  isTablet,
 }) => (
   <div
     style={{
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      padding: "1vw",
-      borderRadius: "0.8vw",
+      padding: isMobile ? "3vw" : isTablet ? "2vw" : "1vw",
+      borderRadius: isMobile ? "3vw" : isTablet ? "1.5vw" : "0.8vw",
       border: `0.1vh solid ${border}`,
       backgroundColor: bg,
       transition: "background-color 0.25s ease, box-shadow 0.25s ease",
@@ -275,8 +315,7 @@ const PaymentItem = ({
     }}
     onMouseEnter={(e) => {
       e.currentTarget.style.backgroundColor = "#F8FAFC";
-      e.currentTarget.style.boxShadow =
-        "0 0.6vh 1.4vh rgba(15, 23, 41, 0.06)";
+      e.currentTarget.style.boxShadow = "0 0.6vh 1.4vh rgba(15, 23, 41, 0.06)";
     }}
     onMouseLeave={(e) => {
       e.currentTarget.style.backgroundColor = bg;
@@ -284,8 +323,8 @@ const PaymentItem = ({
     }}
   >
     {/* LEFT */}
-    <div style={{ display: "flex", gap: "1vw", alignItems: "center" }}>
-      <div style={{ width: "2.2vw", display: "flex", justifyContent: "center" }}>
+    <div style={{ display: "flex", gap: isMobile ? "3vw" : isTablet ? "2vw" : "1vw", alignItems: "center" }}>
+      <div style={{ width: isMobile ? "8vw" : isTablet ? "4vw" : "2.2vw", display: "flex", justifyContent: "center" }}>
         {icon}
       </div>
 
@@ -293,7 +332,7 @@ const PaymentItem = ({
         <p
           style={{
             fontFamily: "'Rethink Sans', sans-serif",
-            fontSize: "1.1vw",
+            fontSize: isMobile ? "3.8vw" : isTablet ? "2.2vw" : "1.1vw",
             fontWeight: 500,
             color: "#0F172A",
           }}
@@ -303,7 +342,7 @@ const PaymentItem = ({
         <p
           style={{
             fontFamily: "'Rethink Sans', sans-serif",
-            fontSize: "0.9vw",
+            fontSize: isMobile ? "3.2vw" : isTablet ? "1.8vw" : "0.9vw",
             color: "#64748B",
           }}
         >
@@ -317,79 +356,167 @@ const PaymentItem = ({
       <p
         style={{
           fontFamily: "'Rethink Sans', sans-serif",
-          fontSize: "1.1vw",
+          fontSize: isMobile ? "3.8vw" : isTablet ? "2.2vw" : "1.1vw",
           fontWeight: 600,
           color: "#0F172A",
         }}
       >
         {amount}
       </p>
-     <p
-  style={{
-    fontFamily: "'Rethink Sans', sans-serif",
-    fontSize: "0.85vw",
-    color: statusText.includes("overdue") ? "#DC2626" : statusColor,
-    fontWeight: statusText.includes("overdue") ? 600 : 400,
-  }}
->
-  {statusText}
-</p>
-
+      <p
+        style={{
+          fontFamily: "'Rethink Sans', sans-serif",
+          fontSize: isMobile ? "3vw" : isTablet ? "1.7vw" : "0.85vw",
+          color: statusText.includes("overdue") ? "#DC2626" : statusColor,
+          fontWeight: statusText.includes("overdue") ? 600 : 400,
+        }}
+      >
+        {statusText}
+      </p>
     </div>
   </div>
 );
 
-
-const InvoiceRow = ({ service, amount, date, status = "Pending", invoice }) => (
-  <div
-    style={{
-      display: 'grid',
-      gridTemplateColumns: '2.1fr 1fr 1.2fr 1.1fr 0.8fr',
-      padding: '1.8vh 1.4vw',
-      borderBottom: '0.1vh solid #E5EAF1',
-      alignItems: 'center'
-    }}
-  >
-    <span style={{ fontFamily: "'Rethink Sans', sans-serif", fontSize: "1.6vh", fontWeight: 500, color: "#0F172A" }}>
-      {service}
-    </span>
-    <span style={{ fontFamily: "'Rethink Sans', sans-serif", fontSize: "1.6vh", fontWeight: 600, color: "#0F172A" }}>
-      {amount}
-    </span>
-    <span style={{ fontFamily: "'Rethink Sans', sans-serif", fontSize: "1.5vh", color: "#7A8699" }}>
-      {date}
-    </span>
-    <span>
-      <span
+const InvoiceRow = ({ service, amount, date, status = "Pending", invoice, isMobile, isTablet }) => {
+  if (isMobile) {
+    // Mobile card layout
+    return (
+      <div
         style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.4vw',
-          padding: '0.6vh 0.9vw',
-          borderRadius: '1.2vh',
-          fontWeight: 500,
-          fontSize: "1.3vh",
-          backgroundColor: status === "Pending" ? "#FFF4E5" : status === "Paid" ? "#E9F9EF" : "#FDECEC",
-          color: status === "Pending" ? "#F59E0B" : status === "Paid" ? "#22C55E" : "#EF4444",
+          padding: '3vw',
+          borderBottom: '0.1vh solid #E5EAF1',
         }}
       >
-        <span style={{ width: '0.4vw', height: '0.4vw', borderRadius: '50%', backgroundColor: 'currentColor' }} />
-        {status}
-      </span>
-    </span>
-    <span
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2vw' }}>
+          <span style={{ fontFamily: "'Rethink Sans', sans-serif", fontSize: "3.8vw", fontWeight: 600, color: "#0F172A" }}>
+            {service}
+          </span>
+          <span style={{ fontFamily: "'Rethink Sans', sans-serif", fontSize: "3.8vw", fontWeight: 600, color: "#0F172A" }}>
+            {amount}
+          </span>
+        </div>
+        
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '2vw' }}>
+          <div>
+            <span style={{ fontFamily: "'Rethink Sans', sans-serif", fontSize: "3.2vw", color: "#7A8699", display: 'block' }}>
+              {date}
+            </span>
+            <span
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '1.5vw',
+                padding: '1.5vw 3vw',
+                borderRadius: '2vw',
+                fontWeight: 500,
+                fontSize: "3vw",
+                backgroundColor: status === "Pending" ? "#FFF4E5" : status === "Paid" ? "#E9F9EF" : "#FDECEC",
+                color: status === "Pending" ? "#F59E0B" : status === "Paid" ? "#22C55E" : "#EF4444",
+                marginTop: '2vw',
+              }}
+            >
+              <span style={{ width: '1.5vw', height: '1.5vw', borderRadius: '50%', backgroundColor: 'currentColor' }} />
+              {status}
+            </span>
+          </div>
+        <span
+  style={{
+    fontFamily: "'Rethink Sans', sans-serif",
+    fontSize: "14px",
+    fontWeight: 500,
+    lineHeight: "20px",
+    color: "#0EA5E9",
+    textAlign: "right",
+    cursor: "pointer",
+  }}
+>
+  {invoice}
+</span>
+
+        </div>
+      </div>
+    );
+  }
+
+  // Desktop and tablet layout
+  return (
+    <div
       style={{
-        fontFamily: "'Rethink Sans', sans-serif",
-        fontSize: "1.5vh",
-        fontWeight: 500,
-        color: "#0EA5E9",
-        textAlign: "right",
-        cursor: "pointer",
+        display: 'grid',
+        gridTemplateColumns: isTablet ? '2fr 1fr 1.2fr 1fr 0.8fr' : '2.1fr 1fr 1.2fr 1.1fr 0.8fr',
+        padding: isTablet ? '1.8vh 2vw' : '1.8vh 1.4vw',
+        borderBottom: '0.1vh solid #E5EAF1',
+        alignItems: 'center'
       }}
     >
-      {invoice}
-    </span>
-  </div>
-);
+     <span
+  style={{
+    fontFamily: "'Rethink Sans', sans-serif",
+    fontSize: "14px",
+    fontWeight: 400,
+    lineHeight: "20px",
+    color: "rgba(15,23,41,1)",
+  }}
+>
+  {service}
+</span>
+
+      <span
+  style={{
+    fontFamily: "'Rethink Sans', sans-serif",
+    fontSize: "14px",
+    fontWeight: 600,
+    lineHeight: "20px",
+    color: "rgba(15,23,41,1)",
+  }}
+>
+  {amount}
+</span>
+
+     <span
+  style={{
+    fontFamily: "'Rethink Sans', sans-serif",
+    fontSize: "14px",
+    fontWeight: 400,
+    lineHeight: "20px",
+    color: "rgba(130,138,150,1)",
+  }}
+>
+  {date}
+</span>
+
+      <span>
+        <span
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: isTablet ? '0.6vw' : '0.4vw',
+            padding: isTablet ? '0.8vh 1.2vw' : '0.6vh 0.9vw',
+            borderRadius: '1.2vh',
+            fontWeight: 500,
+            fontSize: isTablet ? "1.5vh" : "1.3vh",
+            backgroundColor: status === "Pending" ? "#FFF4E5" : status === "Paid" ? "#E9F9EF" : "#FDECEC",
+            color: status === "Pending" ? "#F59E0B" : status === "Paid" ? "#22C55E" : "#EF4444",
+          }}
+        >
+          <span style={{ width: isTablet ? '0.5vw' : '0.4vw', height: isTablet ? '0.5vw' : '0.4vw', borderRadius: '50%', backgroundColor: 'currentColor' }} />
+          {status}
+        </span>
+      </span>
+      <span
+        style={{
+          fontFamily: "'Rethink Sans', sans-serif",
+          fontSize: isTablet ? "1.7vh" : "1.5vh",
+          fontWeight: 500,
+          color: "#0EA5E9",
+          textAlign: "right",
+          cursor: "pointer",
+        }}
+      >
+        {invoice}
+      </span>
+    </div>
+  );
+};
 
 export default DashboardTable;

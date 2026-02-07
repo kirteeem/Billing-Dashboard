@@ -150,21 +150,68 @@ const AWSIcon = () => (
   </svg>
 );
 
+/* ================= RESPONSIVE HOOK ================= */
+const useResponsive = () => {
+  const [isMobile, setIsMobile] = React.useState(false);
+  const [isTablet, setIsTablet] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return { isMobile, isTablet };
+};
+
 /* ================= MAIN COMPONENT ================= */
 
 export default function Subscriptions() {
+  const { isMobile, isTablet } = useResponsive();
+
+  const containerStyle = {
+    width: '100%',
+    padding: isMobile || isTablet ? '0' : '0.5rem 0',
+    fontFamily: "'Rethink Sans', sans-serif"
+  };
+
+  const headerContainerStyle = {
+    marginBottom: isMobile ? '2.5vh' : '3.2vh',
+    padding: isMobile || isTablet ? '0 4vw' : '0',
+  };
+
+  const searchActionsContainerStyle = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    gap: isMobile ? '2vw' : '0.75rem',
+    marginBottom: isMobile ? '3vh' : '1.5rem',
+    padding: isMobile || isTablet ? '0 4vw' : '0',
+  };
+
+  const cardsGridStyle = {
+    display: 'grid',
+    gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
+    gap: isMobile ? '3vw' : '1.25rem',
+    padding: isMobile || isTablet ? '0 4vw' : '0',
+  };
+
   return (
-    <div className="w-full py-2" style={{ fontFamily: "'Rethink Sans', sans-serif" }}>
+    <div style={containerStyle}>
       {/* HEADER */}
-           <div style={{ marginBottom: "3.2vh" }}>
-        
+      <div style={headerContainerStyle}>
         <h1
           style={{
             fontFamily: "Rethink Sans, sans-serif",
             fontWeight: 600,
-            fontSize: "2.08vw",        // ≈ 30px
-            lineHeight: "2.5vw",       // ≈ 36px
-            letterSpacing: "-0.052vw", // ≈ -0.75px
+            fontSize: isMobile ? '6vw' : isTablet ? '4vw' : '2.08vw',
+            lineHeight: isMobile ? '7vw' : isTablet ? '5vw' : '2.5vw',
+            letterSpacing: isMobile ? '-0.1vw' : '-0.052vw',
             color: "rgba(15, 23, 41, 1)",
           }}
         >
@@ -176,59 +223,141 @@ export default function Subscriptions() {
             marginTop: "0.6vh",
             fontFamily: "Rethink Sans, sans-serif",
             fontWeight: 400,
-            fontSize: "1.11vw",        // ≈ 16px
-            lineHeight: "1.67vw",      // ≈ 24px
+            fontSize: isMobile ? '3.5vw' : isTablet ? '2.2vw' : '1.11vw',
+            lineHeight: isMobile ? '5vw' : isTablet ? '3vw' : '1.67vw',
             color: "rgba(130, 138, 150, 1)",
           }}
         >
           Manage all your active services and subscriptions
         </p>
-
       </div>
 
       {/* SEARCH + ACTIONS */}
-      <div className="flex flex-wrap items-center gap-3 mb-6">
-        <div className="flex items-center gap-2 px-3 h-[39px] border border-slate-200 rounded-lg bg-white flex-1 min-w-[280px] max-w-[448px]">
-          <Search size={16} color="#828A96" />
+      <div style={searchActionsContainerStyle}>
+        <div 
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            padding: isMobile ? '0 3vw' : '0 0.75rem',
+            height: isMobile ? '10vw' : '39px',
+            border: '1px solid rgb(226, 232, 240)',
+            borderRadius: isMobile ? '2.5vw' : '0.5rem',
+            backgroundColor: 'white',
+            flex: 1,
+            minWidth: isMobile ? '100%' : '280px',
+            maxWidth: isMobile ? '100%' : '448px',
+          }}
+        >
+          <Search size={isMobile ? 18 : 16} color="#828A96" />
           <input
             type="text"
             placeholder="Search subscriptions..."
-            className="w-full h-full text-sm outline-none border-none placeholder:text-[#828A96]"
-            style={{ fontFamily: "'Rethink Sans', sans-serif" }}
+            style={{
+              width: '100%',
+              height: '100%',
+              fontSize: isMobile ? '3.5vw' : '0.875rem',
+              outline: 'none',
+              border: 'none',
+              fontFamily: "'Rethink Sans', sans-serif",
+            }}
           />
         </div>
 
-        <button className="flex items-center justify-center gap-2 px-4 h-[38px] border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
-          <FilterIcon />
-          <span className="text-sm font-medium" style={{ fontFamily: "'Rethink Sans', sans-serif" }}>Filter</span>
-        </button>
+        {!isMobile && (
+          <>
+            <button 
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.5rem',
+                padding: '0 1rem',
+                height: isTablet ? '10vw' : '38px',
+                border: '1px solid rgb(226, 232, 240)',
+                borderRadius: '0.5rem',
+                backgroundColor: 'white',
+                cursor: 'pointer',
+                transition: 'background-color 0.2s',
+                fontSize: isTablet ? '2vw' : '0.875rem',
+                fontWeight: 500,
+                fontFamily: "'Rethink Sans', sans-serif",
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgb(248, 250, 252)'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}
+            >
+              <FilterIcon />
+              <span>Filter</span>
+            </button>
 
-        <button className="flex items-center justify-center gap-2 px-4 h-[38px] border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
-          <ArrowUpDown size={16} color="#0F1729" />
-          <span className="text-sm font-medium" style={{ fontFamily: "'Rethink Sans', sans-serif" }}>Sort</span>
-        </button>
+            <button 
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.5rem',
+                padding: '0 1rem',
+                height: isTablet ? '10vw' : '38px',
+                border: '1px solid rgb(226, 232, 240)',
+                borderRadius: '0.5rem',
+                backgroundColor: 'white',
+                cursor: 'pointer',
+                transition: 'background-color 0.2s',
+                fontSize: isTablet ? '2vw' : '0.875rem',
+                fontWeight: 500,
+                fontFamily: "'Rethink Sans', sans-serif",
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgb(248, 250, 252)'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}
+            >
+              <ArrowUpDown size={isTablet ? 20 : 16} color="#0F1729" />
+              <span>Sort</span>
+            </button>
+          </>
+        )}
       </div>
 
       {/* CARDS GRID - FULLY RESPONSIVE */}
-      <div className="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-2 gap-5">
+      <div style={cardsGridStyle}>
         {data.map((item) => (
-          <SubscriptionCard key={item.name} {...item} />
+          <SubscriptionCard key={item.name} {...item} isMobile={isMobile} isTablet={isTablet} />
         ))}
       </div>
     </div>
   );
 }
 
-const PngIcon = ({ src, alt }) => (
-  <div className="w-10 h-10 rounded-lg bg-[#F3F5F7] flex items-center justify-center flex-shrink-0">
-    <img src={src} alt={alt} className="w-6 h-6 object-contain" />
+const PngIcon = ({ src, alt, isMobile }) => (
+  <div 
+    style={{
+      width: isMobile ? '12vw' : '40px',
+      height: isMobile ? '12vw' : '40px',
+      borderRadius: isMobile ? '2.5vw' : '0.5rem',
+      backgroundColor: '#F3F5F7',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexShrink: 0,
+    }}
+  >
+    <img 
+      src={src} 
+      alt={alt} 
+      style={{
+        width: isMobile ? '7vw' : '24px',
+        height: isMobile ? '7vw' : '24px',
+        objectFit: 'contain',
+      }}
+    />
   </div>
 );
 
 /* ================= CARD - FULLY RESPONSIVE ================= */
 
-function SubscriptionCard({ name, plan, amount, billingDate, status }) {
+function SubscriptionCard({ name, plan, amount, billingDate, status, isMobile, isTablet }) {
   const renderIcon = () => {
+    const iconProps = { isMobile };
+    
     switch (name) {
       case "Amazon Web Services":
         return <AWSIcon />;
@@ -239,9 +368,9 @@ function SubscriptionCard({ name, plan, amount, billingDate, status }) {
       case "Auth0":
         return <AuthOIcon />;
       case "Bunny CDN":
-        return <PngIcon src={bunnyLogo} alt="Bunny CDN" />;
+        return <PngIcon src={bunnyLogo} alt="Bunny CDN" {...iconProps} />;
       case "Vimeo":
-        return <PngIcon src={vimeoLogo} alt="Vimeo" />;
+        return <PngIcon src={vimeoLogo} alt="Vimeo" {...iconProps} />;
       case "GitHub":
         return <GithubIcon />;
       case "Adobe Creative Cloud":
@@ -250,53 +379,135 @@ function SubscriptionCard({ name, plan, amount, billingDate, status }) {
         return <FigmaIcon />;
       default:
         return (
-          <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center flex-shrink-0">
-            <span className="text-slate-400 text-xs font-semibold">{name.charAt(0)}</span>
+          <div 
+            style={{
+              width: isMobile ? '12vw' : '40px',
+              height: isMobile ? '12vw' : '40px',
+              borderRadius: isMobile ? '2.5vw' : '0.75rem',
+              backgroundColor: 'rgb(241, 245, 249)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0,
+            }}
+          >
+            <span 
+              style={{
+                color: 'rgb(148, 163, 184)',
+                fontSize: isMobile ? '3vw' : '0.75rem',
+                fontWeight: 600,
+              }}
+            >
+              {name.charAt(0)}
+            </span>
           </div>
         );
     }
   };
 
+  const cardStyle = {
+    border: '1px solid rgb(226, 232, 240)',
+    borderRadius: isMobile ? '0' : isTablet ? '2vw' : '0.75rem',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    padding: isMobile ? '5vw' : isTablet ? '4vw' : '1.5rem',
+    backgroundColor: 'white',
+    minHeight: isMobile ? 'auto' : '179px',
+    transition: 'box-shadow 0.2s',
+    fontFamily: "'Rethink Sans', sans-serif",
+  };
+
   return (
     <div 
-      className="border border-slate-200 rounded-xl flex flex-col justify-between p-6 hover:shadow-md transition-shadow bg-white min-h-[179px]"
-      style={{ fontFamily: "'Rethink Sans', sans-serif" }}
+      style={cardStyle}
+      onMouseEnter={(e) => !isMobile && (e.currentTarget.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)')}
+      onMouseLeave={(e) => !isMobile && (e.currentTarget.style.boxShadow = 'none')}
     >
       {/* TOP */}
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-3 min-w-0 flex-1">
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: isMobile ? '3vw' : '0.75rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '3vw' : '0.75rem', minWidth: 0, flex: 1 }}>
           {renderIcon()}
-          <div className="min-w-0 flex-1">
-            <p className="text-base leading-6 font-semibold text-[#0F1729] truncate">
+          <div style={{ minWidth: 0, flex: 1 }}>
+            <p 
+              style={{
+                fontSize: isMobile ? '4vw' : isTablet ? '2.2vw' : '1rem',
+                lineHeight: isMobile ? '5.5vw' : '1.5rem',
+                fontWeight: 600,
+                color: '#0F1729',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+              }}
+            >
               {name}
             </p>
-            <p className="text-sm leading-5 font-normal text-[#828A96] truncate">
+            <p 
+              style={{
+                fontSize: isMobile ? '3.2vw' : isTablet ? '1.8vw' : '0.875rem',
+                lineHeight: isMobile ? '4.5vw' : '1.25rem',
+                fontWeight: 400,
+                color: '#828A96',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+              }}
+            >
               {plan}
             </p>
           </div>
         </div>
-        <StatusBadge status={status} />
+        <StatusBadge status={status} isMobile={isMobile} isTablet={isTablet} />
       </div>
 
       {/* DIVIDER */}
-      <div className="border-t border-slate-200 my-4" />
+      <div style={{ borderTop: '1px solid rgb(226, 232, 240)', margin: isMobile ? '4vw 0' : '1rem 0' }} />
 
       {/* BOTTOM */}
-      <div className="flex items-end justify-between gap-4">
+      <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '1rem' }}>
         <div>
-          <p className="text-2xl leading-8 font-bold text-[#0F1729]">
+          <p 
+            style={{
+              fontSize: isMobile ? '6vw' : isTablet ? '3.5vw' : '1.5rem',
+              lineHeight: isMobile ? '7vw' : '2rem',
+              fontWeight: 700,
+              color: '#0F1729',
+            }}
+          >
             ${amount}
           </p>
-          <p className="text-xs leading-4 font-normal text-[#828A96]">
+          <p 
+            style={{
+              fontSize: isMobile ? '2.8vw' : isTablet ? '1.6vw' : '0.75rem',
+              lineHeight: isMobile ? '3.5vw' : '1rem',
+              fontWeight: 400,
+              color: '#828A96',
+            }}
+          >
             per month
           </p>
         </div>
 
-        <div className="text-right">
-          <p className="text-xs leading-4 font-normal text-[#828A96]">
+        <div style={{ textAlign: 'right' }}>
+          <p 
+            style={{
+              fontSize: isMobile ? '2.8vw' : isTablet ? '1.6vw' : '0.75rem',
+              lineHeight: isMobile ? '3.5vw' : '1rem',
+              fontWeight: 400,
+              color: '#828A96',
+            }}
+          >
             Next billing
           </p>
-          <p className="text-sm leading-5 font-medium text-[#0F1729] whitespace-nowrap">
+          <p 
+            style={{
+              fontSize: isMobile ? '3.2vw' : isTablet ? '1.8vw' : '0.875rem',
+              lineHeight: isMobile ? '4.5vw' : '1.25rem',
+              fontWeight: 500,
+              color: '#0F1729',
+              whiteSpace: 'nowrap',
+            }}
+          >
             {billingDate}
           </p>
         </div>
@@ -307,22 +518,22 @@ function SubscriptionCard({ name, plan, amount, billingDate, status }) {
 
 /* ================= STATUS BADGES ================= */
 
-function StatusBadge({ status }) {
+function StatusBadge({ status, isMobile, isTablet }) {
   const configs = {
     Active: {
-      bg: "bg-green-50",
-      text: "text-green-600",
-      dot: "bg-green-600",
+      bg: "rgb(240, 253, 244)",
+      text: "rgb(22, 163, 74)",
+      dot: "rgb(22, 163, 74)",
     },
     Pending: {
-      bg: "bg-yellow-50",
-      text: "text-yellow-600",
-      dot: "bg-yellow-600",
+      bg: "rgb(254, 252, 232)",
+      text: "rgb(202, 138, 4)",
+      dot: "rgb(202, 138, 4)",
     },
     Overdue: {
-      bg: "bg-red-50",
-      text: "text-red-600",
-      dot: "bg-red-600",
+      bg: "rgb(254, 242, 242)",
+      text: "rgb(220, 38, 38)",
+      dot: "rgb(220, 38, 38)",
     },
   };
 
@@ -330,11 +541,36 @@ function StatusBadge({ status }) {
 
   return (
     <div
-      className={`flex items-center gap-2 px-3 h-6 rounded-full ${config.bg} flex-shrink-0`}
-      style={{ fontFamily: "'Rethink Sans', sans-serif" }}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: isMobile ? '1.5vw' : '0.5rem',
+        padding: isMobile ? '1.5vw 3vw' : isTablet ? '1vh 1.5vw' : '0 0.75rem',
+        height: isMobile ? '6vw' : isTablet ? '3vh' : '24px',
+        borderRadius: isMobile ? '3vw' : '9999px',
+        backgroundColor: config.bg,
+        flexShrink: 0,
+        fontFamily: "'Rethink Sans', sans-serif",
+      }}
     >
-      <div className={`w-1.5 h-1.5 rounded-full ${config.dot}`} />
-      <span className={`text-xs font-semibold ${config.text} whitespace-nowrap`}>{status}</span>
+      <div 
+        style={{
+          width: isMobile ? '1.5vw' : '6px',
+          height: isMobile ? '1.5vw' : '6px',
+          borderRadius: '50%',
+          backgroundColor: config.dot,
+        }}
+      />
+      <span 
+        style={{
+          fontSize: isMobile ? '2.8vw' : isTablet ? '1.5vw' : '0.75rem',
+          fontWeight: 600,
+          color: config.text,
+          whiteSpace: 'nowrap',
+        }}
+      >
+        {status}
+      </span>
     </div>
   );
 }

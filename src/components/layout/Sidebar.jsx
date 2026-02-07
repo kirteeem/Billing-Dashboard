@@ -4,18 +4,20 @@ import { NavLink } from "react-router-dom";
 import swaayattLogo from "../../assets/images/Swaayatt.png";
 import bunnyLogo from "../../assets/icons/BunnyCDN.png";
 import vimeoLogo from "../../assets/icons/Vimeo.png";
-import { Settings as SettingsIcon } from "lucide-react";
-
-
-import {
-  LayoutGrid,
+import { 
+  Settings as SettingsIcon, 
+  Menu, 
+  X, 
   Layers,
   FileText,
   Calendar,
-  Settings,
   ChevronRight,
-  LogOut,
+  LogOut 
 } from "lucide-react";
+
+
+
+// --- CUSTOM SVG COMPONENTS (DEFINED TO PREVENT REFERENCE ERRORS) ---
 
 const GoDaddyLogo = () => (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,23 +28,17 @@ const GoDaddyLogo = () => (
   </svg>
 );
 
-function DashboardIcon({ active, hovered }) {
-  const color =
-    active || hovered ? "#007AFF" : "rgba(130,138,150,1)";
-
+const DashboardIcon = ({ active, hovered }) => {
+  const color = active || hovered ? "#007AFF" : "rgba(130,138,150,1)";
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-      <path d="M7.5 2.5H3.33333C2.8731 2.5 2.5 2.8731 2.5 3.33333V9.16667C2.5 9.6269 2.8731 10 3.33333 10H7.5C7.96024 10 8.33333 9.6269 8.33333 9.16667V3.33333C8.33333 2.8731 7.96024 2.5 7.5 2.5Z"
-        stroke={color} strokeWidth="1.66667" />
-      <path d="M16.667 2.5H12.5003C12.0401 2.5 11.667 2.8731 11.667 3.33333V5.83333C11.667 6.29357 12.0401 6.66667 12.5003 6.66667H16.667C17.1272 6.66667 17.5003 6.29357 17.5003 5.83333V3.33333C17.5003 2.8731 17.1272 2.5 16.667 2.5Z"
-        stroke={color} strokeWidth="1.66667" />
-      <path d="M16.667 10H12.5003C12.0401 10 11.667 10.3731 11.667 10.8333V16.6667C11.667 17.1269 12.0401 17.5 12.5003 17.5H16.667C17.1272 17.5 17.5003 17.1269 17.5003 16.6667V10.8333C17.5003 10.3731 17.1272 10 16.667 10Z"
-        stroke={color} strokeWidth="1.66667" />
-      <path d="M7.5 13.3333H3.33333C2.8731 13.3333 2.5 13.7063 2.5 14.1666V16.6666C2.5 17.1268 2.8731 17.4999 3.33333 17.4999H7.5C7.96024 17.4999 8.33333 17.1268 8.33333 16.6666V14.1666C8.33333 13.7063 7.96024 13.3333 7.5 13.3333Z"
-        stroke={color} strokeWidth="1.66667" />
+      <path d="M7.5 2.5H3.33333C2.8731 2.5 2.5 2.8731 2.5 3.33333V9.16667C2.5 9.6269 2.8731 10 3.33333 10H7.5C7.96024 10 8.33333 9.6269 8.33333 9.16667V3.33333C8.33333 2.8731 7.96024 2.5 7.5 2.5Z" stroke={color} strokeWidth="1.66667" />
+      <path d="M16.667 2.5H12.5003C12.0401 2.5 11.667 2.8731 11.667 3.33333V5.83333C11.667 6.29357 12.0401 6.66667 12.5003 6.66667H16.667C17.1272 6.66667 17.5003 6.29357 17.5003 5.83333V3.33333C17.5003 2.8731 17.1272 2.5 16.667 2.5Z" stroke={color} strokeWidth="1.66667" />
+      <path d="M16.667 10H12.5003C12.0401 10 11.667 10.3731 11.667 10.8333V16.6667C11.667 17.1269 12.0401 17.5 12.5003 17.5H16.667C17.1272 17.5 17.5003 17.1269 17.5003 16.6667V10.8333C17.5003 10.3731 17.1272 10 16.667 10Z" stroke={color} strokeWidth="1.66667" />
+      <path d="M7.5 13.3333H3.33333C2.8731 13.3333 2.5 13.7063 2.5 14.1666V16.6666C2.5 17.1268 2.8731 17.4999 3.33333 17.4999H7.5C7.96024 17.4999 8.33333 17.1268 8.33333 16.6666V14.1666C8.33333 13.7063 7.96024 13.3333 7.5 13.3333Z" stroke={color} strokeWidth="1.66667" />
     </svg>
   );
-}
+};
 
 const AmazonLogo = () => (
   <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,270 +51,233 @@ const AmazonLogo = () => (
   </svg>
 );
 
+// --- MAIN SIDEBAR COMPONENT ---
+
 export default function Sidebar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const closeSidebar = () => setIsOpen(false);
+  const [hideHeader, setHideHeader] = useState(false);
+
+React.useEffect(() => {
+  const scrollContainer = document.getElementById("app-scroll");
+  if (!scrollContainer) return;
+
+  let lastScroll = 0;
+
+  const handleScroll = () => {
+    const current = scrollContainer.scrollTop;
+
+    if (current > lastScroll && current > 50) {
+      setHideHeader(true);
+    } else {
+      setHideHeader(false);
+    }
+
+    lastScroll = current;
+  };
+
+  scrollContainer.addEventListener("scroll", handleScroll);
+  return () => scrollContainer.removeEventListener("scroll", handleScroll);
+}, []);
+
+
+
   return (
     <>
-      <aside className="sticky top-0 h-screen w-64 bg-white border-r border-gray-200 flex flex-col">
-        <div className="px-6 pt-6">
-          
-          {/* LOGO & BRAND */}
-<div className="flex items-center gap-3 mb-8">
+      {/* --- MOBILE TOP NAVIGATION (Visible only on Mobile/Tablet) --- */}
+<header
+  className={`
+    md:hidden fixed top-0 left-0 right-0 h-16 bg-white
+    border-b border-gray-200 shadow-sm
+    px-[1.8vw]
+ z-[200]
+    transition-transform duration-300
+    ${hideHeader ? "-translate-y-full" : "translate-y-0"}
+  `}
+>
+  <div className="grid grid-cols-3 items-center h-full">
+    
+    {/* LEFT : MENU */}
+    <button onClick={() => setIsOpen(true)} className="justify-self-start p-2 text-gray-600">
+      <Menu size={24} />
+    </button>
+
+    {/* CENTER : LOGO */}
+    <div className="flex items-center justify-center gap-2">
+      <img src={swaayattLogo} alt="Logo" className="w-8 h-8 object-contain" />
+
+      <div className="flex flex-col leading-none text-center">
+        <span
+          style={{
+            fontFamily: "Montserrat, sans-serif",
+            fontWeight: 700,
+            fontSize: "14px",
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            color: "rgba(33,33,33,1)",
+          }}
+        >
+          SWAAYATT
+        </span>
+
+        <span
+          style={{
+            fontFamily: "Montserrat, sans-serif",
+            fontWeight: 100,
+            fontSize: "14px",
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+            color: "rgba(33,33,33,1)",
+          }}
+        >
+          ROBOTS
+        </span>
+      </div>
+    </div>
+
+    {/* RIGHT : AVATAR */}
+    <div className="justify-self-end">
+      <div className="w-9 h-9 rounded-full bg-sky-500 text-white flex items-center justify-center text-xs font-medium">
+        JD
+      </div>
+    </div>
+
+  </div>
+</header>
+
+      {/* --- SIDEBAR DRAWER --- */}
+      {/* Overlay for mobile backdrop */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[60] md:hidden" 
+          onClick={closeSidebar} 
+        />
+      )}
+
+      <aside
+        className={`
+          fixed inset-y-0 left-0 z-[70] w-64 bg-white border-r border-gray-200 flex flex-col transition-transform duration-300 ease-in-out
+          md:translate-x-0 md:sticky md:top-0 md:h-screen
+          ${isOpen ? "translate-x-0" : "-translate-x-full"}
+        `}
+      >
+        <div className="px-6 pt-6 overflow-y-auto">
+          {/* Close button for mobile inside drawer */}
+          <div className="md:hidden flex justify-end mb-4">
+            <button onClick={closeSidebar} className="p-1 text-gray-400">
+              <X size={20} />
+            </button>
+          </div>
+
+          {/* LOGO & BRAND (Original Desktop Look) */}
+          <div className="flex items-center gap-3 mb-8">
   <img
     src={swaayattLogo}
     alt="Swaayatt Robots"
     className="w-10 h-10 object-contain"
   />
 
-  {/* BRAND TEXT */}
   <div
     className="flex flex-col justify-center"
     style={{
-      width: "89.69px",
-      height: "32px",
+      width: "172px",
+      height: "48px",
     }}
   >
-    {/* SWAAYATT */}
 <span
   style={{
     fontFamily: "Montserrat, sans-serif",
     fontWeight: 700,
-    fontSize: "12.75px",
+    fontSize: "18.67px",
     lineHeight: "128%",
     letterSpacing: "0.12em",
     textTransform: "uppercase",
-    color: "rgba(33, 33, 33, 1)",
+    color: "rgba(33,33,33,1)",   // ⭐ changed
   }}
 >
   SWAAYATT
 </span>
 
-{/* ROBOTS */}
 <span
   style={{
     fontFamily: "Montserrat, sans-serif",
-    fontWeight: 900,
-    fontSize: "12.75px",
+    fontWeight: 100,
+    fontSize: "18.67px",
     lineHeight: "128%",
     letterSpacing: "0.15em",
     textTransform: "uppercase",
-    color: "rgba(33, 33, 33, 1)",
+    color: "rgba(33,33,33,1)",   // ⭐ changed
   }}
 >
   ROBOTS
 </span>
 
-
   </div>
 </div>
 
-{/* EDGE-TO-EDGE DIVIDER BELOW LOGO */}
-<div
-  style={{
-    height: "1px",
-    backgroundColor: "rgba(227, 231, 237, 1)",
-    marginLeft: "-24px",
-    marginRight: "-24px",
-    marginBottom: "24px",
-  }}
-/>
 
-
+          {/* DIVIDER */}
+          <div style={{ height: "1px", backgroundColor: "rgba(227, 231, 237, 1)", marginLeft: "-24px", marginRight: "-24px", marginBottom: "24px" }} />
 
           {/* PRIMARY NAVIGATION */}
-         <nav className="mb-8">
-  <ul className="flex flex-col gap-1">
-<NavItem
-  to="/"
-  icon={(active, hovered) => (
-    <DashboardIcon active={active} hovered={hovered} />
-  )}
-  label="Dashboard"
-/>
+          <nav className="mb-8">
+            <ul className="flex flex-col gap-1">
+              <NavItem to="/" icon={(active, hovered) => <DashboardIcon active={active} hovered={hovered} />} label="Dashboard" onClick={closeSidebar} />
+              <NavItem to="/subscriptions" icon={(active, hovered) => <Layers size={18} className={active || hovered ? "text-[#007AFF]" : "text-[rgba(130,138,150,1)]"} />} label="Subscriptions" onClick={closeSidebar} />
+              <NavItem to="/invoices" icon={(active, hovered) => <FileText size={18} className={active || hovered ? "text-[#007AFF]" : "text-[rgba(130,138,150,1)]"} />} label="Invoices" onClick={closeSidebar} />
+              <NavItem to="/upcoming-payments" icon={(active, hovered) => <Calendar size={18} className={active || hovered ? "text-[#007AFF]" : "text-[rgba(130,138,150,1)]"} />} label="Upcoming Payments" onClick={closeSidebar} />
+              <NavItem to="/settings" icon={(active, hovered) => <SettingsIcon size={18} className={active || hovered ? "text-[#007AFF]" : "text-[rgba(130,138,150,1)]"} />} label="Settings" onClick={closeSidebar} />
+            </ul>
+          </nav>
 
-
-<NavItem
-  to="/subscriptions"
-  icon={(active, hovered) => (
-    <Layers
-      size={18}
-      className={
-        active || hovered
-          ? "text-[#007AFF]"
-          : "text-[rgba(130,138,150,1)]"
-      }
-    />
-  )}
-  label="Subscriptions"
-/>
-
-<NavItem
-  to="/invoices"
-  icon={(active, hovered) => (
-    <FileText
-      size={18}
-      className={
-        active || hovered
-          ? "text-[#007AFF]"
-          : "text-[rgba(130,138,150,1)]"
-      }
-    />
-  )}
-  label="Invoices"
-/>
-
-<NavItem
-  to=
-  "/upcoming-payments"
-  icon={(active, hovered) => (
-    <Calendar
-      size={18}
-      className={
-        active || hovered
-          ? "text-[#007AFF]"
-          : "text-[rgba(130,138,150,1)]"
-      }
-    />
-  )}
-  label="Upcoming Payments"
-/>
-
-<NavItem
-  to="/settings"
-  icon={(active, hovered) => (
-    <SettingsIcon
-      size={18}
-      className={
-        active || hovered
-          ? "text-[#007AFF]"
-          : "text-[rgba(130,138,150,1)]"
-      }
-    />
-  )}
-  label="Settings"
-/>
-
-
-
-  </ul>
-</nav>
-
-<div
-  style={{
-    width: "12vw",        // same visual width as ~231px
-    height: "0.08vh",
-    backgroundColor: "rgba(227, 231, 237, 1)",
-    marginBottom: "1.5vh",
-  }}
-/>
-
+          <div style={{ width: "100%", height: "1px", backgroundColor: "rgba(227, 231, 237, 1)", marginBottom: "1.5vh" }} />
 
           {/* CONNECTED SERVICES SECTION */}
           <div className="flex flex-col">
-            <p style={{
-              fontFamily: 'Montserrat, sans-serif',
-              fontWeight: 500,
-              fontSize: '12px',
-              lineHeight: '16px',
-              letterSpacing: '0.06em',
-              color: 'rgba(157, 169, 184, 1)',
-              textTransform: 'uppercase',
-              marginBottom: '16px'
-            }}>
+            <p style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 500, fontSize: '12px', lineHeight: '16px', letterSpacing: '0.06em', color: 'rgba(157, 169, 184, 1)', textTransform: 'uppercase', marginBottom: '16px' }}>
               Connected Services
             </p>
             <div className="flex flex-col">
-              <ServiceItem
-  name="Amazon AWS"
-  icon={<AmazonLogo />}
-  to="/services/aws"
-/>
-              <ServiceItem name="Go Daddy" icon={<GoDaddyLogo />} />
-              <ServiceItem name="Bunny CDN" image={bunnyLogo} />
-              <ServiceItem name="Vimeo" image={vimeoLogo} />
+              <ServiceItem name="Amazon AWS" icon={<AmazonLogo />} to="/services/aws" onClick={closeSidebar} />
+              <ServiceItem name="Go Daddy" icon={<GoDaddyLogo />} onClick={closeSidebar} />
+              <ServiceItem name="Bunny CDN" image={bunnyLogo} onClick={closeSidebar} />
+              <ServiceItem name="Vimeo" image={vimeoLogo} onClick={closeSidebar} />
             </div>
           </div>
         </div>
 
         <div className="flex-grow" />
 
-        {/* USER PROFILE CARD */}
-<div
-  style={{
-    width: "100%",
-    height: "1px",
-    backgroundColor: "rgba(227, 231, 237, 1)",
-    marginBottom: "10px",
-  }}
-/>
-
-<div className="px-4 pb-6">
-  <div className="flex items-center justify-between bg-sky-50 rounded-xl px-4 py-3">
-    <div className="flex items-center gap-3">
-      
-      {/* AVATAR */}
-      <div
-        className="w-9 h-9 rounded-full bg-sky-500 text-white flex items-center justify-center"
-        style={{
-          fontFamily: "Rethink Sans, sans-serif",
-          fontWeight: 500,
-          fontSize: "14px",
-          lineHeight: "20px",
-        }}
-      >
-        JD
-      </div>
-
-      {/* NAME + ROLE */}
-      <div className="flex flex-col">
-        {/* NAME */}
-        <span
-          style={{
-            fontFamily: "Rethink Sans, sans-serif",
-            fontWeight: 500,
-            fontSize: "14px",
-            lineHeight: "20px",
-            letterSpacing: "0%",
-            color: "rgba(15, 23, 41, 1)", 
-          }}
-        >
-          John Doe
-        </span>
-
-        {/* ROLE */}
-        <span
-          style={{
-            fontFamily: "Rethink Sans, sans-serif",
-            fontWeight: 400,
-            fontSize: "12px",
-            lineHeight: "16px",
-            letterSpacing: "0%",
-            color: "rgba(130, 138, 150, 1)", 
-          }}
-        >
-          Admin
-        </span>
-      </div>
-    </div>
-
-    {/* LOGOUT ICON */}
-    <LogOut
-      size={16}
-      className="text-gray-400 cursor-pointer hover:text-gray-600 transition-colors"
-    />
-  </div>
-</div>
-
+        {/* USER PROFILE CARD (Bottom of Sidebar) */}
+        <div style={{ width: "100%", height: "1px", backgroundColor: "rgba(227, 231, 237, 1)", marginBottom: "10px" }} />
+        <div className="px-4 pb-6">
+          <div className="flex items-center justify-between bg-sky-50 rounded-xl px-4 py-3">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-full bg-sky-500 text-white flex items-center justify-center text-sm font-medium">JD</div>
+              <div className="flex flex-col text-left">
+                <span className="text-sm font-medium text-slate-900">John Doe</span>
+                <span className="text-xs text-slate-500">Admin</span>
+              </div>
+            </div>
+            <LogOut size={16} className="text-gray-400 cursor-pointer hover:text-gray-600 transition-colors" />
+          </div>
+        </div>
       </aside>
+
+      {/* Spacer so content doesn't get hidden behind fixed mobile header */}
+      <div className="md:hidden h-16" />
     </>
   );
 }
 
-function NavItem({ to, icon, label }) {
-  const [hovered, setHovered] = useState(false);
+// --- HELPER COMPONENTS ---
 
+function NavItem({ to, icon, label, onClick }) {
+  const [hovered, setHovered] = useState(false);
   return (
     <NavLink
       to={to}
+      onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className={({ isActive }) =>
@@ -329,25 +288,9 @@ function NavItem({ to, icon, label }) {
     >
       {({ isActive }) => (
         <>
-          {/* ICON */}
-          <span className="w-[18px] h-[18px] flex items-center justify-center">
-            {icon(isActive, hovered)}
-          </span>
-
-          {/* TEXT */}
-          <span
-            className={`transition-colors ${
-              isActive || hovered
-                ? "text-[#007AFF]"
-                : "text-[rgba(130,138,150,1)]"
-            }`}
-            style={{
-              fontFamily: "Rethink Sans, sans-serif",
-              fontWeight: 500,
-              fontSize: "14px",
-              lineHeight: "20px",
-            }}
-          >
+          <span className="w-[18px] h-[18px] flex items-center justify-center">{icon(isActive, hovered)}</span>
+          <span className={`transition-colors ${isActive || hovered ? "text-[#007AFF]" : "text-[rgba(130,138,150,1)]"}`}
+            style={{ fontFamily: "Rethink Sans, sans-serif", fontWeight: 500, fontSize: "14px", lineHeight: "20px" }}>
             {label}
           </span>
         </>
@@ -356,10 +299,10 @@ function NavItem({ to, icon, label }) {
   );
 }
 
-
-function ServiceItem({ name, icon, image, to }) {
+function ServiceItem({ name, icon, image, to, onClick }) {
   const content = (
     <div
+      onClick={onClick}
       className="flex items-center justify-between px-3 cursor-pointer group transition-all"
       style={{ height: "32px" }}
     >
@@ -367,21 +310,13 @@ function ServiceItem({ name, icon, image, to }) {
         <div className="w-[18px] h-[18px] flex items-center justify-center overflow-hidden">
           {icon ? icon : <img src={image} alt={name} className="w-full h-full object-contain" />}
         </div>
-
         <span
           className="group-hover:text-gray-900"
-          style={{
-            fontFamily: "Rethink Sans",
-            fontWeight: 500,
-            fontSize: "14px",
-            lineHeight: "20px",
-            color: "rgba(130,138,150,1)",
-          }}
+          style={{ fontFamily: "Rethink Sans", fontWeight: 500, fontSize: "14px", lineHeight: "20px", color: "rgba(130,138,150,1)" }}
         >
           {name}
         </span>
       </div>
-
       <ChevronRight size={14} className="text-gray-300 group-hover:text-gray-500" />
     </div>
   );

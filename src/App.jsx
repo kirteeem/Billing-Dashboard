@@ -10,31 +10,32 @@ import AmazonAWS from "./pages/services/AmazonAWS";
 
 export default function App() {
   return (
-    <div className="flex w-screen h-screen bg-[#F8FAFC] overflow-hidden">
+    <div className="flex w-screen h-screen bg-[#F8FAFC]">
       
-      {/* LEFT SIDEBAR */}
+      {/* SIDEBAR + MOBILE HEADER */}
+      {/* IMPORTANT: must render on all devices */}
       <Sidebar />
 
       {/* RIGHT CONTENT */}
       <main
+        id="app-scroll"
         className="
           flex-1
           h-screen
           overflow-y-auto
-          px-6
+          px-0 md:px-[1.8vw]
           py-6
         "
       >
-     <Routes>
-  <Route path="/" element={<Dashboard />} />
-  <Route path="/subscriptions" element={<Subscription />} />
-  <Route path="/settings" element={<Settings />} />
-  <Route path="/invoices" element={<Invoices />} />
-  <Route path="/upcoming-payments" element={<UpcomingPayments />} />
-  <Route path="/services/aws" element={<AmazonAWS />} />
-  <Route path="*" element={<Navigate to="/" replace />} />
-</Routes>
-
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/subscriptions" element={<Subscription />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/invoices" element={<Invoices />} />
+          <Route path="/upcoming-payments" element={<UpcomingPayments />} />
+          <Route path="/services/aws" element={<AmazonAWS />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
     </div>
   );

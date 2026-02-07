@@ -1,3 +1,4 @@
+import React from "react";
 import { Search, Filter, Download } from "lucide-react";
 
 export const FilterIcon = () => (
@@ -18,214 +19,229 @@ export const FilterIcon = () => (
   </svg>
 );
 
+/* ================= RESPONSIVE HOOK ================= */
+const useResponsive = () => {
+  const [isMobile, setIsMobile] = React.useState(false);
+  const [isTablet, setIsTablet] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return { isMobile, isTablet };
+};
 
 export default function Invoices() {
+  const { isMobile, isTablet } = useResponsive();
+
+  const containerStyle = {
+    width: '100%',
+    minHeight: '100vh',
+    backgroundColor: '#F8FAFC',
+    padding: isMobile || isTablet ? '0' : undefined,
+  };
+
+  const contentPadding = isMobile || isTablet ? '0 4vw' : '0';
+
   return (
- <div className="w-full min-h-screen bg-[#F8FAFC]">
-
-
-
-
-
-
+    <div style={containerStyle}>
       {/* ================= HEADER ================= */}
-    <div className="flex justify-between items-center">
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: isMobile ? 'flex-start' : 'center',
+        flexDirection: isMobile ? 'column' : 'row',
+        gap: isMobile ? '2vh' : '0',
+        padding: contentPadding,
+      }}>
+        <div style={{ marginBottom: isMobile ? '0' : '3.2vh' }}>
+          <h1
+            style={{
+              fontFamily: "Rethink Sans, sans-serif",
+              fontWeight: 600,
+              fontSize: isMobile ? '6vw' : isTablet ? '4vw' : '2.08vw',
+              lineHeight: isMobile ? '7vw' : isTablet ? '5vw' : '2.5vw',
+              letterSpacing: isMobile ? '-0.1vw' : '-0.052vw',
+              color: "rgba(15, 23, 41, 1)",
+            }}
+          >
+            Invoices
+          </h1>
 
-          <div style={{ marginBottom: "3.2vh" }}>
-        
-        <h1
-          style={{
-            fontFamily: "Rethink Sans, sans-serif",
-            fontWeight: 600,
-            fontSize: "2.08vw",        // ≈ 30px
-            lineHeight: "2.5vw",       // ≈ 36px
-            letterSpacing: "-0.052vw", // ≈ -0.75px
-            color: "rgba(15, 23, 41, 1)",
-          }}
-        >
-          Invoices
-        </h1>
-
-        <p
-          style={{
-            marginTop: "0.6vh",
-            fontFamily: "Rethink Sans, sans-serif",
-            fontWeight: 400,
-            fontSize: "1.11vw",        // ≈ 16px
-            lineHeight: "1.67vw",      // ≈ 24px
-            color: "rgba(130, 138, 150, 1)",
-          }}
-        >
-         View and manage all your invoices
-        </p>
-
-        
-
-      </div>
-
-       <button
-  className="
-    flex items-center justify-center gap-[0.42vw]
-    w-[6.09vw] h-[3.33vh]
-    rounded-[0.5vw]
-    bg-[#0EA5E9]
-    text-white
-    text-[0.75vw] font-medium
-    transition-colors duration-150
-    hover:bg-[#38BDF8]
-  "
-  style={{ fontFamily: "'Rethink Sans', sans-serif" }}
->
-  <Download size={14} />
-  Export All
-</button>
-
-      </div>
-      
-      
-
-      {/* ================= STATS ================= */}
-      <div className="grid grid-cols-3 gap-[1.5vw] mb-[3vh]">
-        <StatCard title="Total Paid" amount="$8,869" color="text-green-500" />
-        <StatCard title="Pending" amount="$7,255" color="text-yellow-500" />
-        <StatCard title="Overdue" amount="$450" color="text-red-500" />
-      </div>
-
-
-      {/* ================= SEARCH & FILTER ================= */}
-       <div className="flex flex-wrap items-center gap-3 mb-6">
-              <div className="flex items-center gap-2 px-3 h-[39px] border border-slate-200 rounded-lg bg-white flex-1 min-w-[280px] max-w-[448px]">
-                <Search size={16} color="#828A96" />
-                <input
-                  type="text"
-                  placeholder="Search invoices..."
-                  className="w-full h-full text-sm outline-none border-none placeholder:text-[#828A96]"
-                  style={{ fontFamily: "'Rethink Sans', sans-serif" }}
-                />
-              </div>
+          <p
+            style={{
+              marginTop: "0.6vh",
+              fontFamily: "Rethink Sans, sans-serif",
+              fontWeight: 400,
+              fontSize: isMobile ? '3.5vw' : isTablet ? '2.2vw' : '1.11vw',
+              lineHeight: isMobile ? '5vw' : isTablet ? '3vw' : '1.67vw',
+              color: "rgba(130, 138, 150, 1)",
+            }}
+          >
+            View and manage all your invoices
+          </p>
+        </div>
 
         <button
-  className="
-    flex items-center justify-center gap-2
-    px-4 h-[38px]
-    border border-slate-200
-    rounded-lg
-    bg-white
-    transition-colors duration-150
-    hover:bg-[#F1F5F9]
-  "
->
-  <FilterIcon />
-  <span
-    className="text-sm font-medium"
-    style={{ fontFamily: "'Rethink Sans', sans-serif" }}
-  >
-    Filter
-  </span>
-</button>
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: isMobile ? '2vw' : isTablet ? '1vw' : '0.42vw',
+            width: isMobile ? '100%' : isTablet ? '20vw' : '6.09vw',
+            height: isMobile ? '10vw' : isTablet ? '5vh' : '3.33vh',
+            borderRadius: isMobile ? '2.5vw' : isTablet ? '1.5vw' : '0.5vw',
+            backgroundColor: '#0EA5E9',
+            color: 'white',
+            fontSize: isMobile ? '3.5vw' : isTablet ? '2vw' : '0.75vw',
+            fontWeight: 500,
+            fontFamily: "'Rethink Sans', sans-serif",
+            border: 'none',
+            cursor: 'pointer',
+            transition: 'background-color 0.15s',
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#38BDF8'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0EA5E9'}
+        >
+          <Download size={isMobile ? 16 : 14} />
+          Export All
+        </button>
+      </div>
 
+      {/* ================= STATS ================= */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+        gap: isMobile ? '3vw' : '1.5vw',
+        marginBottom: isMobile ? '3vh' : '3vh',
+        padding: contentPadding,
+        marginTop: isMobile ? '3vh' : '0',
+      }}>
+        <StatCard title="Total Paid" amount="$8,869" color="text-green-500" isMobile={isMobile} isTablet={isTablet} />
+        <StatCard title="Pending" amount="$7,255" color="text-yellow-500" isMobile={isMobile} isTablet={isTablet} />
+        <StatCard title="Overdue" amount="$450" color="text-red-500" isMobile={isMobile} isTablet={isTablet} />
+      </div>
+
+      {/* ================= SEARCH & FILTER ================= */}
+      <div style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        gap: isMobile ? '2vw' : '0.75rem',
+        marginBottom: '1.5rem',
+        padding: contentPadding,
+      }}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          padding: isMobile ? '0 3vw' : '0 0.75rem',
+          height: isMobile ? '10vw' : '39px',
+          border: '1px solid rgb(226, 232, 240)',
+          borderRadius: isMobile ? '2.5vw' : '0.5rem',
+          backgroundColor: 'white',
+          flex: 1,
+          minWidth: isMobile ? '100%' : '280px',
+          maxWidth: isMobile ? '100%' : '448px',
+        }}>
+          <Search size={isMobile ? 18 : 16} color="#828A96" />
+          <input
+            type="text"
+            placeholder="Search invoices..."
+            style={{
+              width: '100%',
+              height: '100%',
+              fontSize: isMobile ? '3.5vw' : '0.875rem',
+              outline: 'none',
+              border: 'none',
+              fontFamily: "'Rethink Sans', sans-serif",
+            }}
+          />
+        </div>
+
+        {!isMobile && (
+          <button
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+              padding: '0 1rem',
+              height: isTablet ? '5vh' : '38px',
+              border: '1px solid rgb(226, 232, 240)',
+              borderRadius: '0.5rem',
+              backgroundColor: 'white',
+              cursor: 'pointer',
+              transition: 'background-color 0.15s',
+              fontFamily: "'Rethink Sans', sans-serif",
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F1F5F9'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}
+          >
+            <FilterIcon />
+            <span style={{ fontSize: isTablet ? '2vw' : '0.875rem', fontWeight: 500 }}>
+              Filter
+            </span>
+          </button>
+        )}
       </div>
 
       {/* ================= STATUS TABS ================= */}
-    {/* ================= STATUS TABS ================= */}
-{/* ================= STATUS TABS ================= */}
-{/* ================= STATUS TABS ================= */}
-<div className="flex gap-[0.42vw] mb-[2vh]">
-  {/* ALL (ACTIVE) */}
-  <button
-    className="
-      w-[2.5vw] h-[3.15vh]
-      flex items-center justify-center
-      rounded-full
-      text-[0.7vw] font-medium
-      bg-[#0EA5E9] text-white
-    "
-    style={{ fontFamily: "'Rethink Sans', sans-serif" }}
-  >
-    All
-  </button>
-
-  {/* PAID */}
-  <button
-    className="
-      w-[3.23vw] h-[3.15vh]
-      flex items-center justify-center
-      rounded-full
-      border border-[#E2E8F0]
-      text-[0.7vw] font-medium text-[#64748B]
-      transition-all duration-200
-      hover:border-[#CBD5E1]
-      hover:text-[#0F172A]
-      hover:shadow-[0_1px_2px_rgba(0,0,0,0.06)]
-    "
-    style={{ fontFamily: "'Rethink Sans', sans-serif" }}
-  >
-    Paid
-  </button>
-
-  {/* PENDING (hover look reference) */}
-  <button
-       className="
-      w-[4.69vw] h-[3.15vh]
-      flex items-center justify-center
-      rounded-full
-      border border-[#E2E8F0]
-      text-[0.7vw] font-medium text-[#64748B]
-      transition-all duration-200
-      hover:border-[#CBD5E1]
-      hover:text-[#0F172A]
-      hover:shadow-[0_1px_2px_rgba(0,0,0,0.06)]
-    "
-    style={{ fontFamily: "'Rethink Sans', sans-serif" }}
-  >
-    Pending
-  </button>
-
-  {/* OVERDUE */}
-  <button
-    className="
-      w-[4.69vw] h-[3.15vh]
-      flex items-center justify-center
-      rounded-full
-      border border-[#E2E8F0]
-      text-[0.7vw] font-medium text-[#64748B]
-      transition-all duration-200
-      hover:border-[#CBD5E1]
-      hover:text-[#0F172A]
-      hover:shadow-[0_1px_2px_rgba(0,0,0,0.06)]
-    "
-    style={{ fontFamily: "'Rethink Sans', sans-serif" }}
-  >
-    Overdue
-  </button>
-</div>
-
-
-
+      <div style={{
+        display: 'flex',
+        gap: isMobile ? '2vw' : '0.42vw',
+        marginBottom: '2vh',
+        padding: contentPadding,
+        overflowX: isMobile ? 'auto' : 'visible',
+        WebkitOverflowScrolling: 'touch',
+      }}>
+        <TabButton active isMobile={isMobile} isTablet={isTablet}>All</TabButton>
+        <TabButton isMobile={isMobile} isTablet={isTablet}>Paid</TabButton>
+        <TabButton isMobile={isMobile} isTablet={isTablet}>Pending</TabButton>
+        <TabButton isMobile={isMobile} isTablet={isTablet}>Overdue</TabButton>
+      </div>
 
       {/* ================= TABLE ================= */}
-      {/* ================= TABLE ================= */}
-{/* ================= TABLE ================= */}
-      {/* ================= TABLE ================= */}
-      <div className="bg-white rounded-[0.6vw] border overflow-hidden w-full">
+      <div style={{
+        backgroundColor: 'white',
+        borderRadius: isMobile ? '0' : '0.6vw',
+        border: isMobile ? 'none' : '1px solid #E5E7EB',
+        overflow: 'hidden',
+        width: isMobile || isTablet ? 'calc(100% - 8vw)' : '100%',
+        margin: isMobile || isTablet ? '0 4vw' : '0',
+      }}>
+        {/* HEADER - Hide on mobile */}
+        {!isMobile && (
+          <>
+            <div style={{ backgroundColor: '#FCFCFD', padding: isTablet ? '0 3vw' : '0 0.83vw' }}>
+              <div style={{ 
+                display: 'flex', 
+                color: '#65758B', 
+                fontSize: isTablet ? '1.5vh' : '0.62vw', 
+                textTransform: 'uppercase', 
+                fontWeight: 500,
+                fontFamily: "'Rethink Sans', sans-serif",
+              }}>
+                <div style={{ width: isTablet ? '15%' : '10.85vw', height: '5.56vh', display: 'flex', alignItems: 'center' }}>Invoice</div>
+                <div style={{ width: isTablet ? '25%' : '20.99vw', height: '5.56vh', display: 'flex', alignItems: 'center' }}>Service</div>
+                <div style={{ width: isTablet ? '15%' : '11.25vw', height: '5.56vh', display: 'flex', alignItems: 'center' }}>Amount</div>
+                <div style={{ width: isTablet ? '20%' : '14.43vw', height: '5.56vh', display: 'flex', alignItems: 'center' }}>Due Date</div>
+                <div style={{ width: isTablet ? '15%' : '13.68vw', height: '5.56vh', display: 'flex', alignItems: 'center', paddingLeft: '0.5vw' }}>Status</div>
+                <div style={{ width: isTablet ? '10%' : '11.26vw', height: '5.56vh', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>Actions</div>
+              </div>
+            </div>
+            <div style={{ width: '100%', height: '1px', backgroundColor: '#E5E7EB' }} />
+          </>
+        )}
 
-        {/* HEADER */}
-        <div className="bg-[#FCFCFD] px-[0.83vw]">
-          <div className="flex text-[#65758B] text-[0.62vw] uppercase font-medium">
-            <div className="w-[10.85vw] h-[5.56vh] flex items-center">Invoice</div>
-            <div className="w-[20.99vw] h-[5.56vh] flex items-center">Service</div>
-            <div className="w-[11.25vw] h-[5.56vh] flex items-center">Amount</div>
-            <div className="w-[14.43vw] h-[5.56vh] flex items-center">Due Date</div>
-            <div className="w-[13.68vw] h-[5.56vh] flex items-center pl-[0.5vw]">Status</div>
-            <div className="w-[11.26vw] h-[5.56vh] flex items-center justify-end pr-0">
-  Actions
-</div>
-          </div>
-        </div>
-
-        <div className="w-full h-px bg-[#E5E7EB]" />
-
-        {/* ================= 10 ROWS ================= */}
+        {/* ================= ROWS ================= */}
         {[
           ["INV-008", "Amazon Web Services", "$4,920", "Feb 15, 2026", "Pending"],
           ["INV-009", "Slack", "$1,250", "Feb 10, 2026", "Pending"],
@@ -245,6 +261,8 @@ export default function Invoices() {
             amount={row[2]}
             date={row[3]}
             status={row[4]}
+            isMobile={isMobile}
+            isTablet={isTablet}
           />
         ))}
       </div>
@@ -253,69 +271,294 @@ export default function Invoices() {
 }
 
 /* ================= STAT CARD ================= */
-const StatCard = ({ title, amount, color }) => (
-  <div className="bg-white border rounded-[0.6vw] p-[1.5vw]">
-    <p className="text-[0.7vw] text-[#64748B] mb-[0.5vh]">{title}</p>
-    <h2 className={`text-[1.2vw] font-semibold ${color}`}>{amount}</h2>
+const StatCard = ({ title, amount, color, isMobile, isTablet }) => (
+  <div style={{
+    backgroundColor: 'white',
+    border: '1px solid #E5E7EB',
+    borderRadius: isMobile ? '3vw' : '0.6vw',
+    padding: isMobile ? '4vw' : '1.5vw',
+    fontFamily: "'Rethink Sans', sans-serif",
+  }}>
+    <p style={{ 
+      fontSize: isMobile ? '3vw' : isTablet ? '1.8vw' : '0.7vw', 
+      color: '#64748B', 
+      marginBottom: '0.5vh' 
+    }}>
+      {title}
+    </p>
+    <h2 style={{
+      fontSize: isMobile ? '5vw' : isTablet ? '3vw' : '1.2vw',
+      fontWeight: 600,
+      color: color === 'text-green-500' ? '#22C55E' : color === 'text-yellow-500' ? '#F59E0B' : '#EF4444',
+    }}>
+      {amount}
+    </h2>
   </div>
 );
 
+/* ================= TAB BUTTON ================= */
+const TabButton = ({ active, children, isMobile, isTablet }) => {
+  const baseStyle = {
+    padding: isMobile ? '2vw 4vw' : isTablet ? '1vh 2vw' : '0',
+    height: isMobile ? '8vw' : '3.15vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '9999px',
+    fontSize: isMobile ? '3vw' : isTablet ? '1.6vw' : '0.7vw',
+    fontWeight: 500,
+    fontFamily: "'Rethink Sans', sans-serif",
+    border: 'none',
+    cursor: 'pointer',
+    transition: 'all 0.2s',
+    whiteSpace: 'nowrap',
+    minWidth: isMobile ? 'auto' : isTablet ? 'auto' : active ? '2.5vw' : children === 'Paid' ? '3.23vw' : '4.69vw',
+  };
+
+  if (active) {
+    return (
+      <button style={{
+        ...baseStyle,
+        backgroundColor: '#0EA5E9',
+        color: 'white',
+      }}>
+        {children}
+      </button>
+    );
+  }
+
+  return (
+    <button
+      style={{
+        ...baseStyle,
+        border: '1px solid #E2E8F0',
+        backgroundColor: 'white',
+        color: '#64748B',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = '#CBD5E1';
+        e.currentTarget.style.color = '#0F172A';
+        e.currentTarget.style.boxShadow = '0 1px 2px rgba(0,0,0,0.06)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = '#E2E8F0';
+        e.currentTarget.style.color = '#64748B';
+        e.currentTarget.style.boxShadow = 'none';
+      }}
+    >
+      {children}
+    </button>
+  );
+};
+
 /* ================= TABLE ROW ================= */
-const TableRow = ({ invoice, service, amount, date, status }) => {
+const TableRow = ({ invoice, service, amount, date, status, isMobile, isTablet }) => {
   const statusMap = {
     Pending: {
-      bg: "bg-[#FFF7E6]",
-      text: "text-[#F59E0B]",
-      dot: "bg-[#F59E0B]",
+      bg: "#FFF7E6",
+      text: "#F59E0B",
+      dot: "#F59E0B",
     },
     Overdue: {
-      bg: "bg-[#FEECEC]",
-      text: "text-[#EF4444]",
-      dot: "bg-[#EF4444]",
+      bg: "#FEECEC",
+      text: "#EF4444",
+      dot: "#EF4444",
     },
     Paid: {
-      bg: "bg-[#ECFDF3]",
-      text: "text-[#22C55E]",
-      dot: "bg-[#22C55E]",
+      bg: "#ECFDF3",
+      text: "#22C55E",
+      dot: "#22C55E",
     },
   };
 
-  return (
-    <>
-      <div className="hover:bg-[#F8FAFC] transition-colors">
-        <div className="px-[0.83vw] flex items-center h-[5.56vh] text-[0.73vw]">
-          <div className="w-[10.85vw]">{invoice}</div>
-          <div className="w-[20.99vw]">{service}</div>
-          <div className="w-[11.25vw] font-semibold">{amount}</div>
-          <div className="w-[14.43vw] text-[#828A96]">{date}</div>
-
-          <div className="w-[13.68vw] pl-[0.5vw]">
-            <span className={`inline-flex items-center gap-[0.4vw] px-[0.9vw] py-[0.45vh] rounded-full ${statusMap[status].bg}`}>
-              <span className={`w-[0.42vw] h-[0.42vw] rounded-full ${statusMap[status].dot}`} />
-              <span className={`text-[0.7vw] font-medium ${statusMap[status].text}`}>
+  if (isMobile) {
+    // Mobile card layout
+    return (
+      <>
+        <div style={{
+          padding: '4vw',
+          borderBottom: '1px solid #E5E7EB',
+          fontFamily: "'Rethink Sans', sans-serif",
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2vw' }}>
+            <div>
+              <span style={{ fontSize: '3vw', color: '#64748B' }}>Invoice</span>
+              <p style={{ fontSize: '4vw', fontWeight: 600, color: '#0F172A', marginTop: '1vw' }}>{invoice}</p>
+            </div>
+            <span style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '1.5vw',
+              padding: '1.5vw 3vw',
+              borderRadius: '9999px',
+              backgroundColor: statusMap[status].bg,
+              height: 'fit-content',
+            }}>
+              <span style={{ 
+                width: '1.5vw', 
+                height: '1.5vw', 
+                borderRadius: '50%', 
+                backgroundColor: statusMap[status].dot 
+              }} />
+              <span style={{ 
+                fontSize: '2.8vw', 
+                fontWeight: 500, 
+                color: statusMap[status].text 
+              }}>
                 {status}
               </span>
             </span>
           </div>
 
-         <div className="w-[11.26vw] h-[5.56vh] flex items-center justify-end gap-[1.2vw] pr-0">
-  
-  {/* VIEW */}
-  <button className="text-[0.73vw] text-[rgba(0,183,255,1)] hover:text-[#2563EB] font-medium">
-    View
-  </button>
+          <div style={{ marginBottom: '3vw' }}>
+            <span style={{ fontSize: '3vw', color: '#64748B' }}>Service</span>
+            <p style={{ fontSize: '3.8vw', fontWeight: 500, color: '#0F172A', marginTop: '1vw' }}>{service}</p>
+          </div>
 
-  {/* DOWNLOAD */}
-  <button className="flex items-center gap-[0.25vw] text-[0.73vw] text-[rgba(0,183,255,1)] hover:text-[#2563EB] font-medium">
-    Download
-    <Download size={12} />
-  </button>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3vw' }}>
+            <div>
+              <span style={{ fontSize: '3vw', color: '#64748B' }}>Amount</span>
+              <p style={{ fontSize: '4.5vw', fontWeight: 600, color: '#0F172A', marginTop: '1vw' }}>{amount}</p>
+            </div>
+            <div style={{ textAlign: 'right' }}>
+              <span style={{ fontSize: '3vw', color: '#64748B' }}>Due Date</span>
+              <p style={{ fontSize: '3.5vw', color: '#828A96', marginTop: '1vw' }}>{date}</p>
+            </div>
+          </div>
 
-</div>
+          <div style={{ display: 'flex', gap: '3vw', marginTop: '3vw' }}>
+            <button style={{
+              flex: 1,
+              padding: '3vw',
+              fontSize: '3.5vw',
+              fontWeight: 500,
+              color: '#0EA5E9',
+              backgroundColor: '#F0F9FF',
+              border: '1px solid #BAE6FD',
+              borderRadius: '2vw',
+              cursor: 'pointer',
+              fontFamily: "'Rethink Sans', sans-serif",
+            }}>
+              View
+            </button>
+            <button style={{
+              flex: 1,
+              padding: '3vw',
+              fontSize: '3.5vw',
+              fontWeight: 500,
+              color: '#0EA5E9',
+              backgroundColor: '#F0F9FF',
+              border: '1px solid #BAE6FD',
+              borderRadius: '2vw',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '1.5vw',
+              fontFamily: "'Rethink Sans', sans-serif",
+            }}>
+              Download
+              <Download size={14} />
+            </button>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  // Desktop and tablet layout
+  return (
+    <>
+      <div style={{
+        transition: 'background-color 0.2s',
+        fontFamily: "'Rethink Sans', sans-serif",
+      }}
+        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F8FAFC'}
+        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+      >
+        <div style={{
+          padding: isTablet ? '0 3vw' : '0 0.83vw',
+          display: 'flex',
+          alignItems: 'center',
+          height: '5.56vh',
+          fontSize: isTablet ? '1.8vh' : '0.73vw',
+        }}>
+          <div style={{ width: isTablet ? '15%' : '10.85vw' }}>{invoice}</div>
+          <div style={{ width: isTablet ? '25%' : '20.99vw' }}>{service}</div>
+          <div style={{ width: isTablet ? '15%' : '11.25vw', fontWeight: 600 }}>{amount}</div>
+          <div style={{ width: isTablet ? '20%' : '14.43vw', color: '#828A96' }}>{date}</div>
+
+          <div style={{ width: isTablet ? '15%' : '13.68vw', paddingLeft: '0.5vw' }}>
+            <span style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: isTablet ? '1vw' : '0.4vw',
+              padding: isTablet ? '0.8vh 1.5vw' : '0.45vh 0.9vw',
+              borderRadius: '9999px',
+              backgroundColor: statusMap[status].bg,
+            }}>
+              <span style={{
+                width: isTablet ? '1vw' : '0.42vw',
+                height: isTablet ? '1vw' : '0.42vw',
+                borderRadius: '50%',
+                backgroundColor: statusMap[status].dot,
+              }} />
+              <span style={{
+                fontSize: isTablet ? '1.5vh' : '0.7vw',
+                fontWeight: 500,
+                color: statusMap[status].text,
+              }}>
+                {status}
+              </span>
+            </span>
+          </div>
+
+          <div style={{
+            width: isTablet ? '10%' : '11.26vw',
+            height: '5.56vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            gap: isTablet ? '2vw' : '1.2vw',
+          }}>
+            <button style={{
+              fontSize: isTablet ? '1.8vh' : '0.73vw',
+              color: 'rgba(0,183,255,1)',
+              fontWeight: 500,
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              fontFamily: "'Rethink Sans', sans-serif",
+            }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#2563EB'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(0,183,255,1)'}
+            >
+              View
+            </button>
+
+            <button style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.25vw',
+              fontSize: isTablet ? '1.8vh' : '0.73vw',
+              color: 'rgba(0,183,255,1)',
+              fontWeight: 500,
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              fontFamily: "'Rethink Sans', sans-serif",
+            }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#2563EB'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(0,183,255,1)'}
+            >
+              Download
+              <Download size={isTablet ? 14 : 12} />
+            </button>
+          </div>
         </div>
       </div>
 
-      <div className="w-full h-px bg-[#E5E7EB]" />
+      <div style={{ width: '100%', height: '1px', backgroundColor: '#E5E7EB' }} />
     </>
   );
 };
