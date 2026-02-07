@@ -180,10 +180,12 @@ export default function Subscriptions() {
     fontFamily: "'Rethink Sans', sans-serif"
   };
 
-  const headerContainerStyle = {
-    marginBottom: isMobile ? '2.5vh' : '3.2vh',
-    padding: isMobile || isTablet ? '0 4vw' : '0',
-  };
+ const headerContainerStyle = {
+  marginBottom: isMobile ? '2.5vh' : '3.2vh',
+  padding: isMobile || isTablet ? '0 4vw' : '0',
+  marginTop: isMobile ? '46px' : '0px',   // ⭐ little down
+};
+
 
   const searchActionsContainerStyle = {
     display: 'flex',

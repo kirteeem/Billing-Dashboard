@@ -53,12 +53,14 @@ const useResponsive = () => {
 export default function Settings() {
   const { isMobile, isTablet } = useResponsive();
 
-  const containerStyle = {
-    width: '100%',
-    backgroundColor: '#F8FAFC',
-    padding: isMobile || isTablet ? '0' : '0.22vh 0',
-    fontFamily: "'Rethink Sans', sans-serif",
-  };
+ const containerStyle = {
+  width: '100%',
+  backgroundColor: '#F8FAFC',
+  padding: isMobile || isTablet ? '0' : '0.22vh 0',
+  fontFamily: "'Rethink Sans', sans-serif",
+  marginTop: isMobile ? '44px' : '0',   // ⭐ push below navbar
+};
+
 
   const contentPadding = isMobile || isTablet ? '0 1.5vw' : '0';
 
@@ -145,11 +147,15 @@ export default function Settings() {
                 API Connections
               </h2>
               <p style={{
-                fontSize: isMobile ? '3.2vw' : isTablet ? '2vw' : '0.97vw',
-                color: '#64748B',
-              }}>
-                Manage service integrations
-              </p>
+  fontFamily: "'Rethink Sans', sans-serif",
+  fontSize: '14px',
+  lineHeight: '20px',
+  fontWeight: 400,
+  color: 'rgba(130, 138, 150, 1)',
+}}>
+  Manage service integrations
+</p>
+
             </div>
           </div>
 
@@ -208,12 +214,16 @@ export default function Settings() {
               }}>
                 Alerts & Notifications
               </h2>
-              <p style={{
-                fontSize: isMobile ? '3.2vw' : isTablet ? '2vw' : '0.97vw',
-                color: '#64748B',
-              }}>
-                Configure your notification preferences
-              </p>
+            <p style={{
+  fontFamily: "'Rethink Sans', sans-serif",
+  fontSize: '14px',
+  lineHeight: '20px',
+  fontWeight: 400,
+  color: 'rgba(130, 138, 150, 1)',
+}}>
+  Configure your notification preferences
+</p>
+
             </div>
           </div>
 
@@ -269,19 +279,26 @@ const APIConnectionItem = ({ item, isMobile, isTablet }) => {
         </div>
 
         <div>
-          <p style={{
-            fontSize: isMobile ? '3.8vw' : isTablet ? '2.2vw' : '1.04vw',
-            fontWeight: 500,
-            color: '#0F172A',
-          }}>
-            {item.name}
-          </p>
-          <p style={{
-            fontSize: isMobile ? '3vw' : isTablet ? '1.8vw' : '0.9vw',
-            color: '#64748B',
-          }}>
-            {item.time}
-          </p>
+         <p style={{
+  fontFamily: "'Rethink Sans', sans-serif",
+  fontSize: '16px',
+  lineHeight: '24px',
+  fontWeight: 500,
+  color: 'rgba(15, 23, 41, 1)',
+}}>
+  {item.name}
+</p>
+
+       <p style={{
+  fontFamily: "'Rethink Sans', sans-serif",
+  fontSize: '12px',
+  lineHeight: '16px',
+  fontWeight: 400,
+  color: 'rgba(101, 117, 139, 1)',
+}}>
+  {item.time}
+</p>
+
         </div>
       </div>
 
@@ -309,19 +326,26 @@ const AlertItem = ({ item, isMobile, isTablet }) => {
       borderBottom: isMobile ? '1px solid #E2E8F0' : 'none',
     }}>
       <div style={{ flex: 1, paddingRight: isMobile ? '3vw' : '1vw' }}>
-        <p style={{
-          fontSize: isMobile ? '3.8vw' : isTablet ? '2.2vw' : '1.04vw',
-          fontWeight: 500,
-          color: '#0F172A',
-        }}>
-          {item.title}
-        </p>
-        <p style={{
-          fontSize: isMobile ? '3vw' : isTablet ? '1.8vw' : '0.9vw',
-          color: '#64748B',
-        }}>
-          {item.desc}
-        </p>
+    <p style={{
+  fontFamily: "'Rethink Sans', sans-serif",
+  fontSize: '16px',
+  lineHeight: '24px',
+  fontWeight: 500,
+  color: 'rgba(15, 23, 41, 1)',
+}}>
+  {item.title}
+</p>
+
+      <p style={{
+  fontFamily: "'Rethink Sans', sans-serif",
+  fontSize: '12px',
+  lineHeight: '16px',
+  fontWeight: 400,
+  color: 'rgba(101, 117, 139, 1)',
+}}>
+  {item.desc}
+</p>
+
       </div>
 
       {/* TOGGLE SWITCH */}

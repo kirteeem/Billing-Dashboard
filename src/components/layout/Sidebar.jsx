@@ -28,8 +28,11 @@ const GoDaddyLogo = () => (
   </svg>
 );
 
-const DashboardIcon = ({ active, hovered }) => {
-  const color = active || hovered ? "#007AFF" : "rgba(130,138,150,1)";
+const DashboardIcon = ({ active }) => {
+  const color = active ? "#007AFF" : "rgba(130,138,150,1)";
+
+
+
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
       <path d="M7.5 2.5H3.33333C2.8731 2.5 2.5 2.8731 2.5 3.33333V9.16667C2.5 9.6269 2.8731 10 3.33333 10H7.5C7.96024 10 8.33333 9.6269 8.33333 9.16667V3.33333C8.33333 2.8731 7.96024 2.5 7.5 2.5Z" stroke={color} strokeWidth="1.66667" />
@@ -223,7 +226,8 @@ React.useEffect(() => {
           <nav className="mb-8">
             <ul className="flex flex-col gap-1">
               <NavItem to="/" icon={(active, hovered) => <DashboardIcon active={active} hovered={hovered} />} label="Dashboard" onClick={closeSidebar} />
-              <NavItem to="/subscriptions" icon={(active, hovered) => <Layers size={18} className={active || hovered ? "text-[#007AFF]" : "text-[rgba(130,138,150,1)]"} />} label="Subscriptions" onClick={closeSidebar} />
+              <NavItem to="/subscriptions" icon={(active, hovered) => <Layers className={active ? "text-[#007AFF]" : "text-[rgba(130,138,150,1)]"} />
+} label="Subscriptions" onClick={closeSidebar} />
               <NavItem to="/invoices" icon={(active, hovered) => <FileText size={18} className={active || hovered ? "text-[#007AFF]" : "text-[rgba(130,138,150,1)]"} />} label="Invoices" onClick={closeSidebar} />
               <NavItem to="/upcoming-payments" icon={(active, hovered) => <Calendar size={18} className={active || hovered ? "text-[#007AFF]" : "text-[rgba(130,138,150,1)]"} />} label="Upcoming Payments" onClick={closeSidebar} />
               <NavItem to="/settings" icon={(active, hovered) => <SettingsIcon size={18} className={active || hovered ? "text-[#007AFF]" : "text-[rgba(130,138,150,1)]"} />} label="Settings" onClick={closeSidebar} />
@@ -273,13 +277,11 @@ React.useEffect(() => {
 // --- HELPER COMPONENTS ---
 
 function NavItem({ to, icon, label, onClick }) {
-  const [hovered, setHovered] = useState(false);
   return (
     <NavLink
       to={to}
+      end
       onClick={onClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       className={({ isActive }) =>
         `flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-all
         ${isActive ? "bg-[#F1FAFE]" : "hover:bg-[#F1FAFE]"}`
@@ -288,9 +290,19 @@ function NavItem({ to, icon, label, onClick }) {
     >
       {({ isActive }) => (
         <>
-          <span className="w-[18px] h-[18px] flex items-center justify-center">{icon(isActive, hovered)}</span>
-          <span className={`transition-colors ${isActive || hovered ? "text-[#007AFF]" : "text-[rgba(130,138,150,1)]"}`}
-            style={{ fontFamily: "Rethink Sans, sans-serif", fontWeight: 500, fontSize: "14px", lineHeight: "20px" }}>
+          <span className="w-[18px] h-[18px] flex items-center justify-center">
+            {icon(isActive)}
+          </span>
+
+          <span
+            className={`${isActive ? "text-[#007AFF]" : "text-[rgba(130,138,150,1)]"}`}
+            style={{
+              fontFamily: "Rethink Sans, sans-serif",
+              fontWeight: 500,
+              fontSize: "14px",
+              lineHeight: "20px",
+            }}
+          >
             {label}
           </span>
         </>
@@ -299,11 +311,13 @@ function NavItem({ to, icon, label, onClick }) {
   );
 }
 
+
 function ServiceItem({ name, icon, image, to, onClick }) {
   const content = (
     <div
       onClick={onClick}
-      className="flex items-center justify-between px-3 cursor-pointer group transition-all"
+      className="flex items-center justify-between px-3 cursor-pointer group transition-all hover:bg-[#F1FAFE] rounded-lg"
+
       style={{ height: "32px" }}
     >
       <div className="flex items-center gap-3">
@@ -311,7 +325,8 @@ function ServiceItem({ name, icon, image, to, onClick }) {
           {icon ? icon : <img src={image} alt={name} className="w-full h-full object-contain" />}
         </div>
         <span
-          className="group-hover:text-gray-900"
+          className="group-hover:text-[rgb(241,250,254)]"
+
           style={{ fontFamily: "Rethink Sans", fontWeight: 500, fontSize: "14px", lineHeight: "20px", color: "rgba(130,138,150,1)" }}
         >
           {name}
@@ -321,5 +336,5 @@ function ServiceItem({ name, icon, image, to, onClick }) {
     </div>
   );
 
-  return to ? <NavLink to={to}>{content}</NavLink> : content;
+  return to ? <NavLink to={to} end>{content}</NavLink> : content;
 }

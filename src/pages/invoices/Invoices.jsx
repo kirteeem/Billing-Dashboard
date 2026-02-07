@@ -41,12 +41,13 @@ const useResponsive = () => {
 export default function Invoices() {
   const { isMobile, isTablet } = useResponsive();
 
-  const containerStyle = {
-    width: '100%',
-    minHeight: '100vh',
-    backgroundColor: '#F8FAFC',
-    padding: isMobile || isTablet ? '0' : undefined,
-  };
+ const containerStyle = {
+  width: '100%',
+  minHeight: '100vh',
+  backgroundColor: '#F8FAFC',
+  padding: isMobile || isTablet ? '0' : undefined,
+  marginTop: isMobile ? '44px' : '0',   // ⭐ FIX
+};
 
   const contentPadding = isMobile || isTablet ? '0 4vw' : '0';
 
@@ -399,31 +400,41 @@ const TableRow = ({ invoice, service, amount, date, status, isMobile, isTablet }
               <span style={{ fontSize: '3vw', color: '#64748B' }}>Invoice</span>
               <p style={{ fontSize: '4vw', fontWeight: 600, color: '#0F172A', marginTop: '1vw' }}>{invoice}</p>
             </div>
-           <span style={{
-  display: 'inline-flex',
-  alignItems: 'center',
-  gap: '6px',
-  padding: '4px 10px',
-  borderRadius: '9999px',
-  backgroundColor: statusMap[status].bg,
-}}>
-  <span style={{
-    width: '6px',
-    height: '6px',
-    borderRadius: '50%',
-    backgroundColor: statusMap[status].dot,
-  }} />
-  
-  <span style={{
-    fontFamily: "'Rethink Sans', sans-serif",
-    fontSize: '14px',
-    lineHeight: '20px',
-    fontWeight: 500,
-    color: statusMap[status].text,
-  }}>
+<span
+  style={{
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "5px",
+    height: "24px",
+    padding: "0 10px",
+    borderRadius: "9999px",
+    backgroundColor: statusMap[status].bg,
+  }}
+>
+  <span
+    style={{
+      width: "6px",
+      height: "6px",
+      borderRadius: "50%",
+      backgroundColor: statusMap[status].dot,
+      flexShrink: 0,
+    }}
+  />
+
+  <span
+    style={{
+      fontFamily: "'Rethink Sans', sans-serif",
+      fontSize: "12px",
+      fontWeight: 600,
+      color: statusMap[status].text,
+      lineHeight: "16px",
+      whiteSpace: "nowrap",
+    }}
+  >
     {status}
   </span>
 </span>
+
 
           </div>
 

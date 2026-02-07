@@ -269,13 +269,13 @@ function TableRow({ invoice, amount, date, status, isMobile, isTablet }) {
 
 export default function AwsBillingPage() {
   const { isMobile, isTablet } = useResponsive();
-
-  const containerStyle = {
-    width: '100%',
-    minHeight: '100vh',
-    backgroundColor: '#F8FAFC',
-    padding: isMobile || isTablet ? '0' : undefined,
-  };
+const containerStyle = {
+  width: '100%',
+  minHeight: '100vh',
+  backgroundColor: '#F8FAFC',
+  padding: isMobile || isTablet ? '0' : undefined,
+  marginTop: isMobile ? '44px' : '0',   // ⭐ push page below fixed navbar
+};
 
   const contentPadding = isMobile || isTablet ? '0 4vw' : '0';
 

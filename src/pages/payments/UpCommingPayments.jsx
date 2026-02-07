@@ -26,12 +26,14 @@ const useResponsive = () => {
 export default function UpcomingPayments() {
   const { isMobile, isTablet } = useResponsive();
 
-  const containerStyle = {
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#F8FAFC',
-    padding: isMobile || isTablet ? '0' : undefined,
-  };
+ const containerStyle = {
+  width: '100%',
+  height: '100%',
+  backgroundColor: '#F8FAFC',
+  padding: isMobile || isTablet ? '0' : undefined,
+  marginTop: isMobile ? '44px' : '0',   // ⭐ push below fixed header
+};
+
 
   const contentPadding = isMobile || isTablet ? '0 4vw' : '0';
 
@@ -385,14 +387,16 @@ function PaymentRow({ icon, name, date, amount, status, theme, isMobile, isTable
           }}>
             {name}
           </span>
-          <span style={{
-            fontWeight: 400,
-            fontSize: isTablet ? '1.8vw' : '0.97vw',
-            lineHeight: isTablet ? '3vw' : '2.22vh',
-            color: 'rgba(130, 138, 150, 1)',
-          }}>
-            {date}
-          </span>
+         <span style={{
+  fontFamily: "'Rethink Sans', sans-serif",
+  fontSize: '14px',
+  lineHeight: '20px',
+  fontWeight: 400,
+  color: 'rgba(130, 138, 150, 1)',
+}}>
+  {date}
+</span>
+
         </div>
       </div>
 
