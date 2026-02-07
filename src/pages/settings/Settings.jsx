@@ -29,23 +29,53 @@ const alerts = [
   { title: "Subscription renewal", desc: "7 days before renewal", enabled: true },
 ];
 
+/* ================= RESPONSIVE HOOK ================= */
+const useResponsive = () => {
+  const [isMobile, setIsMobile] = React.useState(false);
+  const [isTablet, setIsTablet] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return { isMobile, isTablet };
+};
+
 /* ================= PAGE ================= */
 
 export default function Settings() {
+  const { isMobile, isTablet } = useResponsive();
+
+  const containerStyle = {
+    width: '100%',
+    backgroundColor: '#F8FAFC',
+    padding: isMobile || isTablet ? '0' : '0.22vh 0',
+    fontFamily: "'Rethink Sans', sans-serif",
+  };
+
+  const contentPadding = isMobile || isTablet ? '0 1.5vw' : '0';
+
   return (
-    <div
-      className="w-full bg-[#F8FAFC] py-[0.22vh]"
-      style={{ fontFamily: "'Rethink Sans', sans-serif" }}
-    >
+    <div style={containerStyle}>
       {/* ================= PAGE HEADER ================= */}
-      <div style={{ marginBottom: "3.55vh" }}>
+      <div style={{ 
+        marginBottom: isMobile ? '2.5vh' : '3.55vh', 
+        padding: isMobile || isTablet ? '0 4vw' : '0' 
+      }}>
         <h1
           style={{
             fontFamily: "Rethink Sans, sans-serif",
             fontWeight: 600,
-            fontSize: "2.08vw",
-            lineHeight: "4vh",
-            letterSpacing: "-0.052vw",
+            fontSize: isMobile ? '6vw' : isTablet ? '4vw' : '2.08vw',
+            lineHeight: isMobile ? '7vw' : isTablet ? '5vw' : '4vh',
+            letterSpacing: isMobile ? '-0.1vw' : '-0.052vw',
             color: "rgba(15, 23, 41, 1)",
           }}
         >
@@ -57,8 +87,8 @@ export default function Settings() {
             marginTop: "0.66vh",
             fontFamily: "Rethink Sans, sans-serif",
             fontWeight: 400,
-            fontSize: "1.11vw",
-            lineHeight: "2.66vh",
+            fontSize: isMobile ? '3.5vw' : isTablet ? '2.2vw' : '1.11vw',
+            lineHeight: isMobile ? '5vw' : isTablet ? '3vw' : '2.66vh',
             color: "rgba(130, 138, 150, 1)",
           }}
         >
@@ -67,112 +97,139 @@ export default function Settings() {
       </div>
 
       {/* ================= MAIN CONTAINER ================= */}
-      <div className="flex gap-[1.66vw] max-w-[110vw]">
+      <div style={{
+        display: 'flex',
+        flexDirection: isMobile ? 'column' : 'row',
+        gap: isMobile ? '3vh' : '1.66vw',
+        maxWidth: '110vw',
+        padding: contentPadding,
+      }}>
         
         {/* ================= API CONNECTIONS CARD ================= */}
         <div
-          className="bg-white rounded-xl border border-[#E2E8F0] p-[1.66vw]"
-          style={{ width: "55.55vw", height: "62.22vh" }}
+          style={{
+            backgroundColor: 'white',
+            borderRadius: isMobile ? '0' : isTablet ? '2vw' : '0.75rem',
+            border: isMobile ? 'none' : '1px solid #E2E8F0',
+            padding: isMobile ? '3vw' : isTablet ? '2vw' : '1.66vw',
+            width: isMobile || isTablet ? '100%' : '55.55vw',
+            height: isMobile ? 'auto' : isTablet ? 'auto' : '62.22vh',
+          }}
         >
           {/* CARD HEADER */}
-          <div className="flex items-start gap-[0.83vw] mb-[2.66vh]">
-            <div className="mt-[0.44vh]">
-              {/* Note: If ApiKeyIcon doesn't accept viewport units for 'size', 
-                  wrap it in a div with vw/vh dimensions */}
-              <ApiKeyIcon size={36} /> 
+          <div style={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: isMobile ? '3vw' : '0.83vw',
+            marginBottom: isMobile ? '3vh' : '2.66vh',
+          }}>
+            <div style={{ marginTop: '0.44vh' }}>
+              <div style={{ 
+                width: isMobile ? '10vw' : isTablet ? '5vw' : '2.5vw',
+                height: isMobile ? '10vw' : isTablet ? '5vw' : '2.5vw',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <ApiKeyIcon size={isMobile ? 32 : 36} />
+              </div>
             </div>
 
             <div>
-              <h2 className="text-[1.25vw] font-semibold text-[#0F172A] leading-[3.11vh]">
+              <h2 style={{
+                fontSize: isMobile ? '4.5vw' : isTablet ? '3vw' : '1.25vw',
+                fontWeight: 600,
+                color: '#0F172A',
+                lineHeight: isMobile ? '6vw' : '3.11vh',
+              }}>
                 API Connections
               </h2>
-              <p className="text-[0.97vw] text-[#64748B]">
+              <p style={{
+                fontSize: isMobile ? '3.2vw' : isTablet ? '2vw' : '0.97vw',
+                color: '#64748B',
+              }}>
                 Manage service integrations
               </p>
             </div>
           </div>
 
           {/* LIST */}
-          <div className="flex flex-col gap-[1.77vh]">
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: isMobile ? '2.5vh' : '1.77vh',
+          }}>
             {apiConnections.map((item, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-between border border-[#E2E8F0] rounded-xl px-[1.11vw] py-[1.77vh] h-[8.22vh]"
-              >
-                <div className="flex items-center gap-[1.11vw]">
-                  <div className="w-[2.77vw] h-[4.44vh] flex items-center justify-center rounded-lg bg-[#F3F5F7]">
-                    {item.icon}
-                  </div>
-
-                  <div>
-                    <p className="text-[1.04vw] font-medium text-[#0F172A]">
-                      {item.name}
-                    </p>
-                    <p className="text-[0.9vw] text-[#64748B]">
-                      {item.time}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center">
-                  {item.status === "connected" ? (
-                    <ConnectedBadge />
-                  ) : (
-                    <DisconnectedBadge />
-                  )}
-                </div>
-              </div>
+              <APIConnectionItem 
+                key={i} 
+                item={item} 
+                isMobile={isMobile} 
+                isTablet={isTablet} 
+              />
             ))}
           </div>
         </div>
 
         {/* ================= ALERTS CARD ================= */}
         <div
-          className="bg-white rounded-xl border border-[#E2E8F0] p-[1.66vw]"
-          style={{ width: "55.55vw", height: "62.22vh" }}
+          style={{
+            backgroundColor: 'white',
+            borderRadius: isMobile ? '0' : isTablet ? '2vw' : '0.75rem',
+            border: isMobile ? 'none' : '1px solid #E2E8F0',
+            padding: isMobile ? '3vw' : isTablet ? '2vw' : '1.66vw',
+            width: isMobile || isTablet ? '100%' : '55.55vw',
+            height: isMobile ? 'auto' : isTablet ? 'auto' : '62.22vh',
+          }}
         >
           {/* HEADER */}
-          <div className="flex gap-[0.83vw] mb-[2.66vh]">
-            <div className="mt-[0.44vh]">
-              <AlertIcon />
+          <div style={{
+            display: 'flex',
+            gap: isMobile ? '3vw' : '0.83vw',
+            marginBottom: isMobile ? '3vh' : '2.66vh',
+          }}>
+            <div style={{ marginTop: '0.44vh' }}>
+              <div style={{ 
+                width: isMobile ? '10vw' : isTablet ? '5vw' : '2.5vw',
+                height: isMobile ? '10vw' : isTablet ? '5vw' : '2.5vw',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <AlertIcon />
+              </div>
             </div>
 
             <div>
-              <h2 className="text-[1.25vw] font-semibold text-[#0F172A] mb-[0.44vh]">
+              <h2 style={{
+                fontSize: isMobile ? '4.5vw' : isTablet ? '3vw' : '1.25vw',
+                fontWeight: 600,
+                color: '#0F172A',
+                marginBottom: '0.44vh',
+              }}>
                 Alerts & Notifications
               </h2>
-              <p className="text-[0.97vw] text-[#64748B]">
+              <p style={{
+                fontSize: isMobile ? '3.2vw' : isTablet ? '2vw' : '0.97vw',
+                color: '#64748B',
+              }}>
                 Configure your notification preferences
               </p>
             </div>
           </div>
 
           {/* LIST */}
-          <div className="flex flex-col gap-[1.77vh]">
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: isMobile ? '2vh' : '1.77vh',
+          }}>
             {alerts.map((item, i) => (
-              <div key={i} className="flex justify-between items-center py-[1vh]">
-                <div>
-                  <p className="text-[1.04vw] font-medium text-[#0F172A]">
-                    {item.title}
-                  </p>
-                  <p className="text-[0.9vw] text-[#64748B]">
-                    {item.desc}
-                  </p>
-                </div>
-
-                {/* TOGGLE SWITCH */}
-                <div
-                  className={`w-[3.05vw] h-[2.66vh] rounded-full p-[0.27vh] transition ${
-                    item.enabled ? "bg-[#0EA5E9]" : "bg-[#E5E7EB]"
-                  }`}
-                >
-                  <div
-                    className={`w-[1.11vw] h-[2.11vh] bg-white rounded-full transition-transform ${
-                      item.enabled ? "translate-x-[1.38vw]" : ""
-                    }`}
-                  />
-                </div>
-              </div>
+              <AlertItem 
+                key={i} 
+                item={item} 
+                isMobile={isMobile} 
+                isTablet={isTablet} 
+              />
             ))}
           </div>
         </div>
@@ -181,3 +238,125 @@ export default function Settings() {
     </div>
   );
 }
+
+/* ================= API CONNECTION ITEM ================= */
+const APIConnectionItem = ({ item, isMobile, isTablet }) => {
+  return (
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      border: '1px solid #E2E8F0',
+      borderRadius: isMobile ? '3vw' : isTablet ? '2vw' : '0.75rem',
+      padding: isMobile ? '3vw' : isTablet ? '2vw 2.5vw' : '1.77vh 1.11vw',
+      height: isMobile ? 'auto' : isTablet ? 'auto' : '8.22vh',
+    }}>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: isMobile ? '3vw' : '1.11vw',
+      }}>
+        <div style={{
+          width: isMobile ? '12vw' : isTablet ? '6vw' : '2.77vw',
+          height: isMobile ? '12vw' : isTablet ? '6vw' : '4.44vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: isMobile ? '2.5vw' : isTablet ? '1.5vw' : '0.5rem',
+          backgroundColor: '#F3F5F7',
+        }}>
+          {item.icon}
+        </div>
+
+        <div>
+          <p style={{
+            fontSize: isMobile ? '3.8vw' : isTablet ? '2.2vw' : '1.04vw',
+            fontWeight: 500,
+            color: '#0F172A',
+          }}>
+            {item.name}
+          </p>
+          <p style={{
+            fontSize: isMobile ? '3vw' : isTablet ? '1.8vw' : '0.9vw',
+            color: '#64748B',
+          }}>
+            {item.time}
+          </p>
+        </div>
+      </div>
+
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        {item.status === "connected" ? (
+          <ConnectedBadge />
+        ) : (
+          <DisconnectedBadge />
+        )}
+      </div>
+    </div>
+  );
+};
+
+/* ================= ALERT ITEM ================= */
+const AlertItem = ({ item, isMobile, isTablet }) => {
+  const [enabled, setEnabled] = React.useState(item.enabled);
+
+  return (
+    <div style={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: isMobile ? '2vh 0' : '1vh 0',
+      borderBottom: isMobile ? '1px solid #E2E8F0' : 'none',
+    }}>
+      <div style={{ flex: 1, paddingRight: isMobile ? '3vw' : '1vw' }}>
+        <p style={{
+          fontSize: isMobile ? '3.8vw' : isTablet ? '2.2vw' : '1.04vw',
+          fontWeight: 500,
+          color: '#0F172A',
+        }}>
+          {item.title}
+        </p>
+        <p style={{
+          fontSize: isMobile ? '3vw' : isTablet ? '1.8vw' : '0.9vw',
+          color: '#64748B',
+        }}>
+          {item.desc}
+        </p>
+      </div>
+
+      {/* TOGGLE SWITCH */}
+      <button
+        onClick={() => setEnabled(!enabled)}
+        style={{
+          width: isMobile ? '12vw' : isTablet ? '8vw' : '3.05vw',
+          height: isMobile ? '6.5vw' : isTablet ? '4vw' : '2.66vh',
+          borderRadius: '9999px',
+          padding: isMobile ? '0.8vw' : '0.27vh',
+          backgroundColor: enabled ? '#0EA5E9' : '#E5E7EB',
+          transition: 'background-color 0.2s',
+          border: 'none',
+          cursor: 'pointer',
+          position: 'relative',
+          flexShrink: 0,
+        }}
+      >
+        <div
+          style={{
+            width: isMobile ? '5vw' : isTablet ? '3.2vw' : '1.11vw',
+            height: isMobile ? '5vw' : isTablet ? '3.2vw' : '2.11vh',
+            backgroundColor: 'white',
+            borderRadius: '50%',
+            transition: 'transform 0.2s',
+            transform: enabled 
+              ? isMobile 
+                ? 'translateX(5.5vw)' 
+                : isTablet 
+                  ? 'translateX(4.3vw)' 
+                  : 'translateX(1.38vw)'
+              : 'translateX(0)',
+          }}
+        />
+      </button>
+    </div>
+  );
+};

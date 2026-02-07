@@ -89,30 +89,30 @@ export default function Invoices() {
           </p>
         </div>
 
-        <button
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: isMobile ? '2vw' : isTablet ? '1vw' : '0.42vw',
-            width: isMobile ? '100%' : isTablet ? '20vw' : '6.09vw',
-            height: isMobile ? '10vw' : isTablet ? '5vh' : '3.33vh',
-            borderRadius: isMobile ? '2.5vw' : isTablet ? '1.5vw' : '0.5vw',
-            backgroundColor: '#0EA5E9',
-            color: 'white',
-            fontSize: isMobile ? '3.5vw' : isTablet ? '2vw' : '0.75vw',
-            fontWeight: 500,
-            fontFamily: "'Rethink Sans', sans-serif",
-            border: 'none',
-            cursor: 'pointer',
-            transition: 'background-color 0.15s',
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#38BDF8'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0EA5E9'}
-        >
-          <Download size={isMobile ? 16 : 14} />
-          Export All
-        </button>
+       <button
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '6px',
+    width: isMobile ? '100%' : 'auto',
+    height: '40px',
+    padding: '0 16px',
+    borderRadius: '8px',
+    backgroundColor: '#0EA5E9',
+    fontFamily: "'Rethink Sans', sans-serif",
+    fontSize: '14px',
+    lineHeight: '20px',
+    fontWeight: 500,
+    color: '#FFFFFF',
+    border: 'none',
+    cursor: 'pointer',
+  }}
+>
+  <Download size={16} />
+  Export All
+</button>
+
       </div>
 
       {/* ================= STATS ================= */}
@@ -221,14 +221,17 @@ export default function Invoices() {
         {!isMobile && (
           <>
             <div style={{ backgroundColor: '#FCFCFD', padding: isTablet ? '0 3vw' : '0 0.83vw' }}>
-              <div style={{ 
-                display: 'flex', 
-                color: '#65758B', 
-                fontSize: isTablet ? '1.5vh' : '0.62vw', 
-                textTransform: 'uppercase', 
-                fontWeight: 500,
-                fontFamily: "'Rethink Sans', sans-serif",
-              }}>
+             <div style={{ 
+  display: 'flex',
+  fontFamily: "'Rethink Sans', sans-serif",
+  fontWeight: 500,
+  fontSize: '12px',
+  lineHeight: '16px',
+  letterSpacing: '0.6px',
+  textTransform: 'uppercase',
+  color: 'rgba(101,117,139,1)',
+}}>
+
                 <div style={{ width: isTablet ? '15%' : '10.85vw', height: '5.56vh', display: 'flex', alignItems: 'center' }}>Invoice</div>
                 <div style={{ width: isTablet ? '25%' : '20.99vw', height: '5.56vh', display: 'flex', alignItems: 'center' }}>Service</div>
                 <div style={{ width: isTablet ? '15%' : '11.25vw', height: '5.56vh', display: 'flex', alignItems: 'center' }}>Amount</div>
@@ -279,17 +282,28 @@ const StatCard = ({ title, amount, color, isMobile, isTablet }) => (
     padding: isMobile ? '4vw' : '1.5vw',
     fontFamily: "'Rethink Sans', sans-serif",
   }}>
+    {/* TITLE */}
     <p style={{ 
-      fontSize: isMobile ? '3vw' : isTablet ? '1.8vw' : '0.7vw', 
-      color: '#64748B', 
-      marginBottom: '0.5vh' 
+      fontSize: '14px',
+      lineHeight: '20px',
+      fontWeight: 500,
+      color: 'rgba(101,117,139,1)',
+      marginBottom: '4px'
     }}>
       {title}
     </p>
+
+    {/* AMOUNT */}
     <h2 style={{
-      fontSize: isMobile ? '5vw' : isTablet ? '3vw' : '1.2vw',
-      fontWeight: 600,
-      color: color === 'text-green-500' ? '#22C55E' : color === 'text-yellow-500' ? '#F59E0B' : '#EF4444',
+      fontSize: '24px',
+      lineHeight: '32px',
+      fontWeight: 700,
+      color:
+        color === 'text-green-500'
+          ? 'rgba(33,196,93,1)'
+          : color === 'text-yellow-500'
+          ? '#F59E0B'
+          : '#EF4444',
     }}>
       {amount}
     </h2>
@@ -385,29 +399,32 @@ const TableRow = ({ invoice, service, amount, date, status, isMobile, isTablet }
               <span style={{ fontSize: '3vw', color: '#64748B' }}>Invoice</span>
               <p style={{ fontSize: '4vw', fontWeight: 600, color: '#0F172A', marginTop: '1vw' }}>{invoice}</p>
             </div>
-            <span style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '1.5vw',
-              padding: '1.5vw 3vw',
-              borderRadius: '9999px',
-              backgroundColor: statusMap[status].bg,
-              height: 'fit-content',
-            }}>
-              <span style={{ 
-                width: '1.5vw', 
-                height: '1.5vw', 
-                borderRadius: '50%', 
-                backgroundColor: statusMap[status].dot 
-              }} />
-              <span style={{ 
-                fontSize: '2.8vw', 
-                fontWeight: 500, 
-                color: statusMap[status].text 
-              }}>
-                {status}
-              </span>
-            </span>
+           <span style={{
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '6px',
+  padding: '4px 10px',
+  borderRadius: '9999px',
+  backgroundColor: statusMap[status].bg,
+}}>
+  <span style={{
+    width: '6px',
+    height: '6px',
+    borderRadius: '50%',
+    backgroundColor: statusMap[status].dot,
+  }} />
+  
+  <span style={{
+    fontFamily: "'Rethink Sans', sans-serif",
+    fontSize: '14px',
+    lineHeight: '20px',
+    fontWeight: 500,
+    color: statusMap[status].text,
+  }}>
+    {status}
+  </span>
+</span>
+
           </div>
 
           <div style={{ marginBottom: '3vw' }}>
@@ -483,10 +500,50 @@ const TableRow = ({ invoice, service, amount, date, status, isMobile, isTablet }
           height: '5.56vh',
           fontSize: isTablet ? '1.8vh' : '0.73vw',
         }}>
-          <div style={{ width: isTablet ? '15%' : '10.85vw' }}>{invoice}</div>
-          <div style={{ width: isTablet ? '25%' : '20.99vw' }}>{service}</div>
-          <div style={{ width: isTablet ? '15%' : '11.25vw', fontWeight: 600 }}>{amount}</div>
-          <div style={{ width: isTablet ? '20%' : '14.43vw', color: '#828A96' }}>{date}</div>
+          <div style={{
+  width: isTablet ? '15%' : '10.85vw',
+  fontFamily: "'Rethink Sans', sans-serif",
+  fontSize: '14px',
+  lineHeight: '20px',
+  fontWeight: 400,
+  color: 'rgba(15, 23, 41, 1)',
+}}>
+  {invoice}
+</div>
+
+<div style={{
+  width: isTablet ? '25%' : '20.99vw',
+  fontFamily: "'Rethink Sans', sans-serif",
+  fontSize: '14px',
+  lineHeight: '20px',
+  fontWeight: 400,
+  color: 'rgba(15, 23, 41, 1)',
+}}>
+  {service}
+</div>
+
+         <div style={{
+  width: isTablet ? '15%' : '11.25vw',
+  fontFamily: "'Rethink Sans', sans-serif",
+  fontSize: '14px',
+  lineHeight: '20px',
+  fontWeight: 600,
+  color: 'rgba(15, 23, 41, 1)',
+}}>
+  {amount}
+</div>
+
+        <div style={{
+  width: isTablet ? '20%' : '14.43vw',
+  fontFamily: "'Rethink Sans', sans-serif",
+  fontSize: '14px',
+  lineHeight: '20px',
+  fontWeight: 400,
+  color: 'rgba(130, 138, 150, 1)',
+}}>
+  {date}
+</div>
+
 
           <div style={{ width: isTablet ? '15%' : '13.68vw', paddingLeft: '0.5vw' }}>
             <span style={{
@@ -521,39 +578,39 @@ const TableRow = ({ invoice, service, amount, date, status, isMobile, isTablet }
             justifyContent: 'flex-end',
             gap: isTablet ? '2vw' : '1.2vw',
           }}>
-            <button style={{
-              fontSize: isTablet ? '1.8vh' : '0.73vw',
-              color: 'rgba(0,183,255,1)',
-              fontWeight: 500,
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              fontFamily: "'Rethink Sans', sans-serif",
-            }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#2563EB'}
-              onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(0,183,255,1)'}
-            >
-              View
-            </button>
+          <button style={{
+  fontFamily: "'Rethink Sans', sans-serif",
+  fontSize: '14px',
+  lineHeight: '20px',
+  fontWeight: 500,
+  color: 'rgba(0,183,255,1)',
+  background: 'none',
+  border: 'none',
+  cursor: 'pointer',
+}}
+onMouseEnter={(e) => e.currentTarget.style.color = '#2563EB'}
+onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(0,183,255,1)'}
+>
+  View
+</button>
 
-            <button style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.25vw',
-              fontSize: isTablet ? '1.8vh' : '0.73vw',
-              color: 'rgba(0,183,255,1)',
-              fontWeight: 500,
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              fontFamily: "'Rethink Sans', sans-serif",
-            }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#2563EB'}
-              onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(0,183,255,1)'}
-            >
-              Download
-              <Download size={isTablet ? 14 : 12} />
-            </button>
+
+           <button style={{
+  fontFamily: "'Rethink Sans', sans-serif",
+  fontSize: '14px',
+  lineHeight: '20px',
+  fontWeight: 500,
+  color: 'rgba(0,183,255,1)',
+  background: 'none',
+  border: 'none',
+  cursor: 'pointer',
+}}
+onMouseEnter={(e) => e.currentTarget.style.color = '#2563EB'}
+onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(0,183,255,1)'}
+>
+  Download
+</button>
+
           </div>
         </div>
       </div>

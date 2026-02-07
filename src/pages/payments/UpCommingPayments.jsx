@@ -193,12 +193,17 @@ function StatCard({ title, value, variant, isMobile, isTablet }) {
       }}
     >
       <div>
-        <div style={{
-          fontSize: isMobile ? '3.2vw' : isTablet ? '2vw' : '0.97vw',
-          color: 'rgba(130,138,150,1)',
-        }}>
-          {title}
-        </div>
+      <div style={{
+  fontFamily: "'Rethink Sans', sans-serif",
+  fontWeight: 500,
+  fontSize: '14px',
+  lineHeight: '20px',
+  letterSpacing: '0px',
+  color: '#828A96',
+}}>
+  {title}
+</div>
+
 
         <div style={{
           marginTop: '0.11vh',
