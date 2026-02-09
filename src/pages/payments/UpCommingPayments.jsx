@@ -45,8 +45,8 @@ export default function UpcomingPayments() {
           style={{
             fontFamily: "Rethink Sans, sans-serif",
             fontWeight: 600,
-            fontSize: isMobile ? '6vw' : isTablet ? '4vw' : '2.08vw',
-            lineHeight: isMobile ? '7vw' : isTablet ? '5vw' : '4vh',
+            fontSize: isMobile ? '26px' : isTablet ? '4vw' : '2.08vw',
+            lineHeight: isMobile ? '32px' : isTablet ? '5vw' : '4vh',
             letterSpacing: isMobile ? '-0.1vw' : '-0.052vw',
             color: "rgba(15, 23, 41, 1)",
           }}
@@ -59,8 +59,8 @@ export default function UpcomingPayments() {
             marginTop: "0.66vh",
             fontFamily: "Rethink Sans, sans-serif",
             fontWeight: 400,
-            fontSize: isMobile ? '3.5vw' : isTablet ? '2.2vw' : '1.11vw',
-            lineHeight: isMobile ? '5vw' : isTablet ? '3vw' : '2.66vh',
+            fontSize: isMobile ? '16px' : isTablet ? '2.2vw' : '1.11vw',
+            lineHeight: isMobile ? '22px' : isTablet ? '3vw' : '2.66vh',
             color: "rgba(130, 138, 150, 1)",
           }}
         >

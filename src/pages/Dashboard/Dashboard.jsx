@@ -12,7 +12,9 @@ export default function Dashboard() {
       <div className="mb-4 md:mb-[3.2vh]">
         
         <h1
-          className="text-2xl md:text-[2.08vw]"
+          className="text-[26px] md:text-[2.08vw]"
+
+
           style={{
             fontFamily: "Rethink Sans, sans-serif",
             fontWeight: 600,
@@ -28,7 +30,8 @@ export default function Dashboard() {
         </h1>
 
         <p
-          className="text-sm md:text-[1.11vw] mt-1 md:mt-[0.6vh]"
+          className="text-[16px] md:text-[1.11vw] mt-1 md:mt-[0.6vh]"
+
           style={{
             fontFamily: "Rethink Sans, sans-serif",
             fontWeight: 400,

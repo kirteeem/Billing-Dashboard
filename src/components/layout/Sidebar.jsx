@@ -87,13 +87,13 @@ React.useEffect(() => {
 
   return (
     <>
-      {/* --- MOBILE TOP NAVIGATION (Visible only on Mobile/Tablet) --- */}
+      {/* --- MOBILE/TABLET TOP NAVIGATION --- */}
 <header
   className={`
-    md:hidden fixed top-0 left-0 right-0 h-16 bg-white
+    lg:hidden fixed top-0 left-0 right-0 h-16 bg-white
     border-b border-gray-200 shadow-sm
     px-[1.8vw]
- z-[200]
+    z-[200]
     transition-transform duration-300
     ${hideHeader ? "-translate-y-full" : "translate-y-0"}
   `}
@@ -109,7 +109,8 @@ React.useEffect(() => {
     <div className="flex items-center justify-center gap-2">
       <img src={swaayattLogo} alt="Logo" className="w-8 h-8 object-contain" />
 
-      <div className="flex flex-col leading-none text-center">
+      {/* TEXT */}
+      <div className="flex flex-col items-start leading-none">
         <span
           style={{
             fontFamily: "Montserrat, sans-serif",
@@ -126,7 +127,7 @@ React.useEffect(() => {
         <span
           style={{
             fontFamily: "Montserrat, sans-serif",
-            fontWeight: 100,
+            fontWeight: 400,
             fontSize: "14px",
             letterSpacing: "0.15em",
             textTransform: "uppercase",
@@ -139,20 +140,15 @@ React.useEffect(() => {
     </div>
 
     {/* RIGHT : AVATAR */}
-    <div className="justify-self-end">
-      <div className="w-9 h-9 rounded-full bg-sky-500 text-white flex items-center justify-center text-xs font-medium">
-        JD
-      </div>
-    </div>
-
+   
   </div>
 </header>
 
       {/* --- SIDEBAR DRAWER --- */}
-      {/* Overlay for mobile backdrop */}
+      {/* Overlay for mobile/tablet backdrop */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[60] md:hidden" 
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[60] lg:hidden" 
           onClick={closeSidebar} 
         />
       )}
@@ -160,67 +156,77 @@ React.useEffect(() => {
       <aside
         className={`
           fixed inset-y-0 left-0 z-[70] w-64 bg-white border-r border-gray-200 flex flex-col transition-transform duration-300 ease-in-out
-          md:translate-x-0 md:sticky md:top-0 md:h-screen
+          lg:translate-x-0 lg:sticky lg:top-0 lg:h-screen
           ${isOpen ? "translate-x-0" : "-translate-x-full"}
         `}
       >
         <div className="px-6 pt-6 overflow-y-auto">
-          {/* Close button for mobile inside drawer */}
-          <div className="md:hidden flex justify-end mb-4">
+          {/* Close button for mobile/tablet inside drawer */}
+          <div className="lg:hidden flex justify-end mb-4">
             <button onClick={closeSidebar} className="p-1 text-gray-400">
               <X size={20} />
             </button>
           </div>
 
-          {/* LOGO & BRAND (Original Desktop Look) */}
-          <div className="flex items-center gap-3 mb-8">
-  <img
-    src={swaayattLogo}
-    alt="Swaayatt Robots"
-    className="w-10 h-10 object-contain"
-  />
+          {/* LOGO & BRAND (Desktop Only) */}
+          <div className="hidden lg:flex items-center gap-3 mb-8">
 
-  <div
-    className="flex flex-col justify-center"
-    style={{
-      width: "172px",
-      height: "48px",
-    }}
-  >
-<span
-  style={{
-    fontFamily: "Montserrat, sans-serif",
-    fontWeight: 700,
-    fontSize: "18.67px",
-    lineHeight: "128%",
-    letterSpacing: "0.12em",
-    textTransform: "uppercase",
-    color: "rgba(33,33,33,1)",   // ⭐ changed
-  }}
->
-  SWAAYATT
-</span>
+            <img
+              src={swaayattLogo}
+              alt="Swaayatt Robots"
+              className="w-10 h-10 object-contain"
+            />
 
-<span
-  style={{
-    fontFamily: "Montserrat, sans-serif",
-    fontWeight: 100,
-    fontSize: "18.67px",
-    lineHeight: "128%",
-    letterSpacing: "0.15em",
-    textTransform: "uppercase",
-    color: "rgba(33,33,33,1)",   // ⭐ changed
-  }}
->
-  ROBOTS
-</span>
+            <div
+              className="flex flex-col justify-center"
+              style={{
+                width: "172px",
+                height: "48px",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "Montserrat, sans-serif",
+                  fontWeight: 700,
+                  fontSize: "18.67px",
+                  lineHeight: "128%",
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  color: "rgba(33,33,33,1)",
+                }}
+              >
+                SWAAYATT
+              </span>
 
-  </div>
-</div>
+              <span
+                style={{
+                  fontFamily: "Montserrat, sans-serif",
+                  fontWeight: 100,
+                  fontSize: "18.67px",
+                  lineHeight: "128%",
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  color: "rgba(33,33,33,1)",
+                }}
+              >
+                ROBOTS
+              </span>
+
+            </div>
+          </div>
 
 
           {/* DIVIDER */}
-          <div style={{ height: "1px", backgroundColor: "rgba(227, 231, 237, 1)", marginLeft: "-24px", marginRight: "-24px", marginBottom: "24px" }} />
+          <div
+            className="bg-transparent lg:bg-[rgba(227,231,237,1)]"
+            style={{
+              height: "1px",
+              marginLeft: "-24px",
+              marginRight: "-24px",
+              marginBottom: "24px",
+            }}
+          />
+
 
           {/* PRIMARY NAVIGATION */}
           <nav className="mb-8">
@@ -268,8 +274,8 @@ React.useEffect(() => {
         </div>
       </aside>
 
-      {/* Spacer so content doesn't get hidden behind fixed mobile header */}
-      <div className="md:hidden h-16" />
+      {/* Spacer so content doesn't get hidden behind fixed mobile/tablet header */}
+      <div className="lg:hidden h-16" />
     </>
   );
 }

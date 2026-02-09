@@ -46,7 +46,7 @@ export default function Invoices() {
   minHeight: '100vh',
   backgroundColor: '#F8FAFC',
   padding: isMobile || isTablet ? '0' : undefined,
-  marginTop: isMobile ? '44px' : '0',   // ⭐ FIX
+  marginTop: isMobile ? '44px' : '0',
 };
 
   const contentPadding = isMobile || isTablet ? '0 4vw' : '0';
@@ -62,13 +62,13 @@ export default function Invoices() {
         gap: isMobile ? '2vh' : '0',
         padding: contentPadding,
       }}>
-        <div style={{ marginBottom: isMobile ? '0' : '3.2vh' }}>
+        <div style={{ marginBottom: isMobile ? '0' : isTablet ? '2vh' : '3.2vh' }}>
           <h1
             style={{
               fontFamily: "Rethink Sans, sans-serif",
               fontWeight: 600,
-              fontSize: isMobile ? '6vw' : isTablet ? '4vw' : '2.08vw',
-              lineHeight: isMobile ? '7vw' : isTablet ? '5vw' : '2.5vw',
+              fontSize: isMobile ? '26px' : isTablet ? '28px' : '2.08vw',
+              lineHeight: isMobile ? '32px' : isTablet ? '36px' : '2.5vw',
               letterSpacing: isMobile ? '-0.1vw' : '-0.052vw',
               color: "rgba(15, 23, 41, 1)",
             }}
@@ -81,8 +81,8 @@ export default function Invoices() {
               marginTop: "0.6vh",
               fontFamily: "Rethink Sans, sans-serif",
               fontWeight: 400,
-              fontSize: isMobile ? '3.5vw' : isTablet ? '2.2vw' : '1.11vw',
-              lineHeight: isMobile ? '5vw' : isTablet ? '3vw' : '1.67vw',
+              fontSize: isMobile ? '16px' : isTablet ? '16px' : '1.11vw',
+              lineHeight: isMobile ? '22px' : isTablet ? '22px' : '1.67vw',
               color: "rgba(130, 138, 150, 1)",
             }}
           >
@@ -120,10 +120,10 @@ export default function Invoices() {
       <div style={{
         display: 'grid',
         gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
-        gap: isMobile ? '3vw' : '1.5vw',
+        gap: isMobile ? '3vw' : isTablet ? '16px' : '1.5vw',
         marginBottom: isMobile ? '3vh' : '3vh',
         padding: contentPadding,
-        marginTop: isMobile ? '3vh' : '0',
+        marginTop: isMobile ? '3vh' : isTablet ? '2vh' : '0',
       }}>
         <StatCard title="Total Paid" amount="$8,869" color="text-green-500" isMobile={isMobile} isTablet={isTablet} />
         <StatCard title="Pending" amount="$7,255" color="text-yellow-500" isMobile={isMobile} isTablet={isTablet} />
@@ -175,7 +175,7 @@ export default function Invoices() {
               justifyContent: 'center',
               gap: '0.5rem',
               padding: '0 1rem',
-              height: isTablet ? '5vh' : '38px',
+              height: '38px',
               border: '1px solid rgb(226, 232, 240)',
               borderRadius: '0.5rem',
               backgroundColor: 'white',
@@ -187,7 +187,7 @@ export default function Invoices() {
             onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}
           >
             <FilterIcon />
-            <span style={{ fontSize: isTablet ? '2vw' : '0.875rem', fontWeight: 500 }}>
+            <span style={{ fontSize: '0.875rem', fontWeight: 500 }}>
               Filter
             </span>
           </button>
@@ -197,7 +197,7 @@ export default function Invoices() {
       {/* ================= STATUS TABS ================= */}
       <div style={{
         display: 'flex',
-        gap: isMobile ? '2vw' : '0.42vw',
+        gap: isMobile ? '2vw' : isTablet ? '8px' : '0.42vw',
         marginBottom: '2vh',
         padding: contentPadding,
         overflowX: isMobile ? 'auto' : 'visible',
@@ -212,7 +212,7 @@ export default function Invoices() {
       {/* ================= TABLE ================= */}
       <div style={{
         backgroundColor: 'white',
-        borderRadius: isMobile ? '0' : '0.6vw',
+        borderRadius: isMobile ? '0' : isTablet ? '12px' : '0.6vw',
         border: isMobile ? 'none' : '1px solid #E5E7EB',
         overflow: 'hidden',
         width: isMobile || isTablet ? 'calc(100% - 8vw)' : '100%',
@@ -221,7 +221,7 @@ export default function Invoices() {
         {/* HEADER - Hide on mobile */}
         {!isMobile && (
           <>
-            <div style={{ backgroundColor: '#FCFCFD', padding: isTablet ? '0 3vw' : '0 0.83vw' }}>
+            <div style={{ backgroundColor: '#FCFCFD', padding: isTablet ? '0 20px' : '0 0.83vw' }}>
              <div style={{ 
   display: 'flex',
   fontFamily: "'Rethink Sans', sans-serif",
@@ -233,12 +233,12 @@ export default function Invoices() {
   color: 'rgba(101,117,139,1)',
 }}>
 
-                <div style={{ width: isTablet ? '15%' : '10.85vw', height: '5.56vh', display: 'flex', alignItems: 'center' }}>Invoice</div>
-                <div style={{ width: isTablet ? '25%' : '20.99vw', height: '5.56vh', display: 'flex', alignItems: 'center' }}>Service</div>
-                <div style={{ width: isTablet ? '15%' : '11.25vw', height: '5.56vh', display: 'flex', alignItems: 'center' }}>Amount</div>
-                <div style={{ width: isTablet ? '20%' : '14.43vw', height: '5.56vh', display: 'flex', alignItems: 'center' }}>Due Date</div>
-                <div style={{ width: isTablet ? '15%' : '13.68vw', height: '5.56vh', display: 'flex', alignItems: 'center', paddingLeft: '0.5vw' }}>Status</div>
-                <div style={{ width: isTablet ? '10%' : '11.26vw', height: '5.56vh', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>Actions</div>
+                <div style={{ width: isTablet ? '15%' : '10.85vw', height: isTablet ? '48px' : '5.56vh', display: 'flex', alignItems: 'center' }}>Invoice</div>
+                <div style={{ width: isTablet ? '25%' : '20.99vw', height: isTablet ? '48px' : '5.56vh', display: 'flex', alignItems: 'center' }}>Service</div>
+                <div style={{ width: isTablet ? '15%' : '11.25vw', height: isTablet ? '48px' : '5.56vh', display: 'flex', alignItems: 'center' }}>Amount</div>
+                <div style={{ width: isTablet ? '20%' : '14.43vw', height: isTablet ? '48px' : '5.56vh', display: 'flex', alignItems: 'center' }}>Due Date</div>
+                <div style={{ width: isTablet ? '15%' : '13.68vw', height: isTablet ? '48px' : '5.56vh', display: 'flex', alignItems: 'center', paddingLeft: isTablet ? '8px' : '0.5vw' }}>Status</div>
+                <div style={{ width: isTablet ? '10%' : '11.26vw', height: isTablet ? '48px' : '5.56vh', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>Actions</div>
               </div>
             </div>
             <div style={{ width: '100%', height: '1px', backgroundColor: '#E5E7EB' }} />
@@ -279,8 +279,8 @@ const StatCard = ({ title, amount, color, isMobile, isTablet }) => (
   <div style={{
     backgroundColor: 'white',
     border: '1px solid #E5E7EB',
-    borderRadius: isMobile ? '3vw' : '0.6vw',
-    padding: isMobile ? '4vw' : '1.5vw',
+    borderRadius: isMobile ? '3vw' : isTablet ? '12px' : '0.6vw',
+    padding: isMobile ? '4vw' : isTablet ? '20px' : '1.5vw',
     fontFamily: "'Rethink Sans', sans-serif",
   }}>
     {/* TITLE */}
@@ -314,13 +314,13 @@ const StatCard = ({ title, amount, color, isMobile, isTablet }) => (
 /* ================= TAB BUTTON ================= */
 const TabButton = ({ active, children, isMobile, isTablet }) => {
   const baseStyle = {
-    padding: isMobile ? '2vw 4vw' : isTablet ? '1vh 2vw' : '0',
-    height: isMobile ? '8vw' : '3.15vh',
+    padding: isMobile ? '2vw 4vw' : isTablet ? '8px 16px' : '0',
+    height: isMobile ? '8vw' : isTablet ? '32px' : '3.15vh',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: '9999px',
-    fontSize: isMobile ? '3vw' : isTablet ? '1.6vw' : '0.7vw',
+    fontSize: isMobile ? '3vw' : isTablet ? '14px' : '0.7vw',
     fontWeight: 500,
     fontFamily: "'Rethink Sans', sans-serif",
     border: 'none',
@@ -505,11 +505,11 @@ const TableRow = ({ invoice, service, amount, date, status, isMobile, isTablet }
         onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
       >
         <div style={{
-          padding: isTablet ? '0 3vw' : '0 0.83vw',
+          padding: isTablet ? '0 20px' : '0 0.83vw',
           display: 'flex',
           alignItems: 'center',
-          height: '5.56vh',
-          fontSize: isTablet ? '1.8vh' : '0.73vw',
+          height: isTablet ? '56px' : '5.56vh',
+          fontSize: isTablet ? '14px' : '0.73vw',
         }}>
           <div style={{
   width: isTablet ? '15%' : '10.85vw',
@@ -556,24 +556,24 @@ const TableRow = ({ invoice, service, amount, date, status, isMobile, isTablet }
 </div>
 
 
-          <div style={{ width: isTablet ? '15%' : '13.68vw', paddingLeft: '0.5vw' }}>
+          <div style={{ width: isTablet ? '15%' : '13.68vw', paddingLeft: isTablet ? '8px' : '0.5vw' }}>
             <span style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: isTablet ? '1vw' : '0.4vw',
-              padding: isTablet ? '0.8vh 1.5vw' : '0.45vh 0.9vw',
+              gap: isTablet ? '6px' : '0.4vw',
+              padding: isTablet ? '4px 12px' : '0.45vh 0.9vw',
               borderRadius: '9999px',
               backgroundColor: statusMap[status].bg,
             }}>
               <span style={{
-                width: isTablet ? '1vw' : '0.42vw',
-                height: isTablet ? '1vw' : '0.42vw',
+                width: isTablet ? '6px' : '0.42vw',
+                height: isTablet ? '6px' : '0.42vw',
                 borderRadius: '50%',
                 backgroundColor: statusMap[status].dot,
               }} />
               <span style={{
-                fontSize: isTablet ? '1.5vh' : '0.7vw',
-                fontWeight: 500,
+                fontSize: isTablet ? '12px' : '0.7vw',
+                fontWeight: 600,
                 color: statusMap[status].text,
               }}>
                 {status}
@@ -583,11 +583,11 @@ const TableRow = ({ invoice, service, amount, date, status, isMobile, isTablet }
 
           <div style={{
             width: isTablet ? '10%' : '11.26vw',
-            height: '5.56vh',
+            height: isTablet ? '56px' : '5.56vh',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-end',
-            gap: isTablet ? '2vw' : '1.2vw',
+            gap: isTablet ? '16px' : '1.2vw',
           }}>
           <button style={{
   fontFamily: "'Rethink Sans', sans-serif",

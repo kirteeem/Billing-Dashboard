@@ -100,22 +100,22 @@ const DashboardTable = () => {
   // Container styles based on device
   const containerStyle = {
     width: '100%',
-    marginTop: isMobile ? '2vh' : '3vh',
+    marginTop: isMobile ? '2vh' : isTablet ? '20px' : '3vh',
     padding: isMobile || isTablet ? '0' : undefined,
   };
 
   const mainGridStyle = {
     display: 'flex',
-    flexDirection: isMobile ? 'column' : 'row',
-    gap: isMobile ? '2vh' : '2vw',
+    flexDirection: isMobile || isTablet ? 'column' : 'row',
+    gap: isMobile ? '2vh' : isTablet ? '20px' : '2vw',
     alignItems: 'stretch',
   };
 
   const upcomingPaymentsStyle = {
     backgroundColor: 'white',
-    border: '0.1vh solid #E5EAF1',
-    borderRadius: isMobile ? '0' : '1.1vw',
-    padding: isMobile ? '2vh 4vw' : isTablet ? '2vh 3vw' : '2.4vh 1.7vw',
+    border: '1px solid #E5EAF1',
+    borderRadius: isMobile ? '0' : isTablet ? '16px' : '1.1vw',
+    padding: isMobile ? '2vh 4vw' : isTablet ? '20px 24px' : '2.4vh 1.7vw',
     width: isMobile || isTablet ? '100%' : '50vw',
     display: 'flex',
     flexDirection: 'column',
@@ -123,9 +123,9 @@ const DashboardTable = () => {
 
   const recentInvoicesStyle = {
     backgroundColor: 'white',
-    border: '0.1vh solid #E5EAF1',
-    borderRadius: isMobile ? '0' : '1.1vw',
-    padding: isMobile ? '2vh 4vw' : isTablet ? '2vh 3vw' : '2.7vh 1.7vw',
+    border: '1px solid #E5EAF1',
+    borderRadius: isMobile ? '0' : isTablet ? '16px' : '1.1vw',
+    padding: isMobile ? '2vh 4vw' : isTablet ? '24px' : '2.7vh 1.7vw',
     width: isMobile || isTablet ? '100%' : '57.8vw',
     display: 'flex',
     flexDirection: 'column',
@@ -137,14 +137,14 @@ const DashboardTable = () => {
 
         {/* ================= LEFT : UPCOMING PAYMENTS ================= */}
         <div style={upcomingPaymentsStyle}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2.2vh' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: isTablet ? '16px' : '2.2vh' }}>
             <div>
               <h3
                 style={{
                   fontFamily: "'Rethink Sans', sans-serif",
-                  fontSize: isMobile ? "4vw" : isTablet ? "2.5vw" : "1.2vw",
+                  fontSize: isMobile ? "4vw" : isTablet ? "20px" : "1.2vw",
                   fontWeight: 600,
-                  lineHeight: isMobile ? "4vh" : "3vh",
+                  lineHeight: isMobile ? "4vh" : isTablet ? "28px" : "3vh",
                   color: "rgba(15, 23, 41, 1)",
                 }}
               >
@@ -153,7 +153,7 @@ const DashboardTable = () => {
               <p
                 style={{
                   fontFamily: "'Rethink Sans', sans-serif",
-                  fontSize: isMobile ? "3.5vw" : isTablet ? "2vw" : "0.9vw",
+                  fontSize: isMobile ? "3.5vw" : isTablet ? "14px" : "0.9vw",
                   color: "rgba(130, 138, 150, 1)",
                 }}
               >
@@ -161,10 +161,10 @@ const DashboardTable = () => {
               </p>
             </div>
 
-            {!isMobile && <ViewAllButton />}
+            {!isMobile && !isTablet && <ViewAllButton />}
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5vh' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: isTablet ? '12px' : '1.5vh' }}>
             <PaymentItem
               icon={<AuthO />}
               name="Auth0"
@@ -192,7 +192,7 @@ const DashboardTable = () => {
             />
 
             <PaymentItem
-              icon={<img src={bunnyLogo} style={{ width: isMobile ? "8vw" : isTablet ? "4vw" : "2.2vw", height: isMobile ? "8vw" : isTablet ? "4vw" : "2.2vw" }} />}
+              icon={<img src={bunnyLogo} style={{ width: isMobile ? "8vw" : isTablet ? "32px" : "2.2vw", height: isMobile ? "8vw" : isTablet ? "32px" : "2.2vw" }} />}
               name="Bunny CDN"
               date="Due Feb 5, 2026"
               amount="$195"
@@ -231,33 +231,33 @@ const DashboardTable = () => {
         {/* ================= RIGHT : RECENT INVOICES ================= */}
         <div style={recentInvoicesStyle}>
           {/* Header */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.2vh' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: isTablet ? '16px' : '2.2vh' }}>
             <h3
               style={{
                 fontFamily: "'Rethink Sans', sans-serif",
-                fontSize: isMobile ? "4vw" : isTablet ? "2.5vw" : "1.2vw",
+                fontSize: isMobile ? "4vw" : isTablet ? "20px" : "1.2vw",
                 fontWeight: 600,
                 color: "rgba(15, 23, 41, 1)",
               }}
             >
               Recent Invoices
             </h3>
-            {!isMobile && <ViewAllButton />}
+            {!isMobile && !isTablet && <ViewAllButton />}
           </div>
 
           {/* TABLE WRAPPER */}
-          <div style={{ border: '0.1vh solid #E5EAF1', borderRadius: isMobile ? '0' : '0.9vw', overflow: isMobile ? 'auto' : 'hidden' }}>
-            {/* Header Row - Hide on mobile */}
-            {!isMobile && (
+          <div style={{ border: '1px solid #E5EAF1', borderRadius: isMobile ? '0' : isTablet ? '12px' : '0.9vw', overflow: isMobile ? 'auto' : 'hidden' }}>
+            {/* Header Row - Hide on mobile and tablet */}
+            {!isMobile && !isTablet && (
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: isTablet ? '2fr 1fr 1.2fr 1fr 0.8fr' : '2.1fr 1fr 1.2fr 1.1fr 0.8fr',
-                  padding: isTablet ? '1.6vh 2vw' : '1.6vh 1.4vw',
-                  borderBottom: '0.1vh solid #E5EAF1',
+                  gridTemplateColumns: '2.1fr 1fr 1.2fr 1.1fr 0.8fr',
+                  padding: '1.6vh 1.4vw',
+                  borderBottom: '1px solid #E5EAF1',
                   backgroundColor: '#FCFCFD',
                   fontFamily: "'Rethink Sans', sans-serif",
-                  fontSize: isTablet ? "1.6vh" : "1.3vh",
+                  fontSize: "1.3vh",
                   fontWeight: 500,
                   letterSpacing: "0.08vh",
                   color: "rgba(130, 138, 150, 1)",
@@ -306,16 +306,16 @@ const PaymentItem = ({
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      padding: isMobile ? "3vw" : isTablet ? "2vw" : "1vw",
-      borderRadius: isMobile ? "3vw" : isTablet ? "1.5vw" : "0.8vw",
-      border: `0.1vh solid ${border}`,
+      padding: isMobile ? "3vw" : isTablet ? "14px" : "1vw",
+      borderRadius: isMobile ? "3vw" : isTablet ? "12px" : "0.8vw",
+      border: `1px solid ${border}`,
       backgroundColor: bg,
       transition: "background-color 0.25s ease, box-shadow 0.25s ease",
       cursor: "pointer",
     }}
     onMouseEnter={(e) => {
       e.currentTarget.style.backgroundColor = "#F8FAFC";
-      e.currentTarget.style.boxShadow = "0 0.6vh 1.4vh rgba(15, 23, 41, 0.06)";
+      e.currentTarget.style.boxShadow = "0 4px 12px rgba(15, 23, 41, 0.06)";
     }}
     onMouseLeave={(e) => {
       e.currentTarget.style.backgroundColor = bg;
@@ -323,8 +323,8 @@ const PaymentItem = ({
     }}
   >
     {/* LEFT */}
-    <div style={{ display: "flex", gap: isMobile ? "3vw" : isTablet ? "2vw" : "1vw", alignItems: "center" }}>
-      <div style={{ width: isMobile ? "8vw" : isTablet ? "4vw" : "2.2vw", display: "flex", justifyContent: "center" }}>
+    <div style={{ display: "flex", gap: isMobile ? "3vw" : isTablet ? "12px" : "1vw", alignItems: "center" }}>
+      <div style={{ width: isMobile ? "8vw" : isTablet ? "32px" : "2.2vw", display: "flex", justifyContent: "center" }}>
         {icon}
       </div>
 
@@ -332,7 +332,7 @@ const PaymentItem = ({
         <p
           style={{
             fontFamily: "'Rethink Sans', sans-serif",
-            fontSize: isMobile ? "3.8vw" : isTablet ? "2.2vw" : "1.1vw",
+            fontSize: isMobile ? "3.8vw" : isTablet ? "16px" : "1.1vw",
             fontWeight: 500,
             color: "#0F172A",
           }}
@@ -342,7 +342,7 @@ const PaymentItem = ({
         <p
           style={{
             fontFamily: "'Rethink Sans', sans-serif",
-            fontSize: isMobile ? "3.2vw" : isTablet ? "1.8vw" : "0.9vw",
+            fontSize: isMobile ? "3.2vw" : isTablet ? "14px" : "0.9vw",
             color: "#64748B",
           }}
         >
@@ -356,7 +356,7 @@ const PaymentItem = ({
       <p
         style={{
           fontFamily: "'Rethink Sans', sans-serif",
-          fontSize: isMobile ? "3.8vw" : isTablet ? "2.2vw" : "1.1vw",
+          fontSize: isMobile ? "3.8vw" : isTablet ? "16px" : "1.1vw",
           fontWeight: 600,
           color: "#0F172A",
         }}
@@ -366,7 +366,7 @@ const PaymentItem = ({
       <p
         style={{
           fontFamily: "'Rethink Sans', sans-serif",
-          fontSize: isMobile ? "3vw" : isTablet ? "1.7vw" : "0.85vw",
+          fontSize: isMobile ? "3vw" : isTablet ? "13px" : "0.85vw",
           color: statusText.includes("overdue") ? "#DC2626" : statusColor,
           fontWeight: statusText.includes("overdue") ? 600 : 400,
         }}
@@ -378,135 +378,134 @@ const PaymentItem = ({
 );
 
 const InvoiceRow = ({ service, amount, date, status = "Pending", invoice, isMobile, isTablet }) => {
-  if (isMobile) {
-    // Mobile card layout
+  if (isMobile || isTablet) {
+    // Mobile and tablet card layout
     return (
       <div
         style={{
-          padding: '3vw',
-          borderBottom: '0.1vh solid #E5EAF1',
+          padding: isMobile ? '3vw' : '16px',
+          borderBottom: '1px solid #E5EAF1',
         }}
       >
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2vw' }}>
-          <span style={{ fontFamily: "'Rethink Sans', sans-serif", fontSize: "3.8vw", fontWeight: 600, color: "#0F172A" }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: isMobile ? '2vw' : '8px' }}>
+          <span style={{ fontFamily: "'Rethink Sans', sans-serif", fontSize: isMobile ? "3.8vw" : "16px", fontWeight: 600, color: "#0F172A" }}>
             {service}
           </span>
-          <span style={{ fontFamily: "'Rethink Sans', sans-serif", fontSize: "3.8vw", fontWeight: 600, color: "#0F172A" }}>
+          <span style={{ fontFamily: "'Rethink Sans', sans-serif", fontSize: isMobile ? "3.8vw" : "16px", fontWeight: 600, color: "#0F172A" }}>
             {amount}
           </span>
         </div>
         
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '2vw' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: isMobile ? '2vw' : '8px' }}>
           <div>
-            <span style={{ fontFamily: "'Rethink Sans', sans-serif", fontSize: "3.2vw", color: "#7A8699", display: 'block' }}>
+            <span style={{ fontFamily: "'Rethink Sans', sans-serif", fontSize: isMobile ? "3.2vw" : "14px", color: "#7A8699", display: 'block' }}>
               {date}
             </span>
             <span
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '1.5vw',
-                padding: '1.5vw 3vw',
-                borderRadius: '2vw',
+                gap: isMobile ? '1.5vw' : '6px',
+                padding: isMobile ? '1.5vw 3vw' : '6px 12px',
+                borderRadius: isMobile ? '2vw' : '8px',
                 fontWeight: 500,
-                fontSize: "3vw",
+                fontSize: isMobile ? "3vw" : "12px",
                 backgroundColor: status === "Pending" ? "#FFF4E5" : status === "Paid" ? "#E9F9EF" : "#FDECEC",
                 color: status === "Pending" ? "#F59E0B" : status === "Paid" ? "#22C55E" : "#EF4444",
-                marginTop: '2vw',
+                marginTop: isMobile ? '2vw' : '8px',
               }}
             >
-              <span style={{ width: '1.5vw', height: '1.5vw', borderRadius: '50%', backgroundColor: 'currentColor' }} />
+              <span style={{ width: isMobile ? '1.5vw' : '6px', height: isMobile ? '1.5vw' : '6px', borderRadius: '50%', backgroundColor: 'currentColor' }} />
               {status}
             </span>
           </div>
-        <span
-  style={{
-    fontFamily: "'Rethink Sans', sans-serif",
-    fontSize: "14px",
-    fontWeight: 500,
-    lineHeight: "20px",
-    color: "#0EA5E9",
-    textAlign: "right",
-    cursor: "pointer",
-  }}
->
-  {invoice}
-</span>
-
+          <span
+            style={{
+              fontFamily: "'Rethink Sans', sans-serif",
+              fontSize: "14px",
+              fontWeight: 500,
+              lineHeight: "20px",
+              color: "#0EA5E9",
+              textAlign: "right",
+              cursor: "pointer",
+            }}
+          >
+            {invoice}
+          </span>
         </div>
       </div>
     );
   }
 
-  // Desktop and tablet layout
+  // Desktop layout
   return (
     <div
       style={{
         display: 'grid',
-        gridTemplateColumns: isTablet ? '2fr 1fr 1.2fr 1fr 0.8fr' : '2.1fr 1fr 1.2fr 1.1fr 0.8fr',
-        padding: isTablet ? '1.8vh 2vw' : '1.8vh 1.4vw',
-        borderBottom: '0.1vh solid #E5EAF1',
+        gridTemplateColumns: '2.1fr 1fr 1.2fr 1.1fr 0.8fr',
+        padding: '1.8vh 1.4vw',
+        borderBottom: '1px solid #E5EAF1',
         alignItems: 'center'
       }}
     >
-     <span
-  style={{
-    fontFamily: "'Rethink Sans', sans-serif",
-    fontSize: "14px",
-    fontWeight: 400,
-    lineHeight: "20px",
-    color: "rgba(15,23,41,1)",
-  }}
->
-  {service}
-</span>
+      <span
+        style={{
+          fontFamily: "'Rethink Sans', sans-serif",
+          fontSize: "14px",
+          fontWeight: 400,
+          lineHeight: "20px",
+          color: "rgba(15,23,41,1)",
+        }}
+      >
+        {service}
+      </span>
 
       <span
-  style={{
-    fontFamily: "'Rethink Sans', sans-serif",
-    fontSize: "14px",
-    fontWeight: 600,
-    lineHeight: "20px",
-    color: "rgba(15,23,41,1)",
-  }}
->
-  {amount}
-</span>
+        style={{
+          fontFamily: "'Rethink Sans', sans-serif",
+          fontSize: "14px",
+          fontWeight: 600,
+          lineHeight: "20px",
+          color: "rgba(15,23,41,1)",
+        }}
+      >
+        {amount}
+      </span>
 
-     <span
-  style={{
-    fontFamily: "'Rethink Sans', sans-serif",
-    fontSize: "14px",
-    fontWeight: 400,
-    lineHeight: "20px",
-    color: "rgba(130,138,150,1)",
-  }}
->
-  {date}
-</span>
+      <span
+        style={{
+          fontFamily: "'Rethink Sans', sans-serif",
+          fontSize: "14px",
+          fontWeight: 400,
+          lineHeight: "20px",
+          color: "rgba(130,138,150,1)",
+        }}
+      >
+        {date}
+      </span>
 
       <span>
         <span
           style={{
             display: 'inline-flex',
             alignItems: 'center',
-            gap: isTablet ? '0.6vw' : '0.4vw',
-            padding: isTablet ? '0.8vh 1.2vw' : '0.6vh 0.9vw',
+            gap: '0.4vw',
+            padding: '0.6vh 0.9vw',
             borderRadius: '1.2vh',
             fontWeight: 500,
-            fontSize: isTablet ? "1.5vh" : "1.3vh",
+            fontSize: "1.3vh",
             backgroundColor: status === "Pending" ? "#FFF4E5" : status === "Paid" ? "#E9F9EF" : "#FDECEC",
             color: status === "Pending" ? "#F59E0B" : status === "Paid" ? "#22C55E" : "#EF4444",
           }}
         >
-          <span style={{ width: isTablet ? '0.5vw' : '0.4vw', height: isTablet ? '0.5vw' : '0.4vw', borderRadius: '50%', backgroundColor: 'currentColor' }} />
+          <span style={{ width: '0.4vw', height: '0.4vw', borderRadius: '50%', backgroundColor: 'currentColor' }} />
           {status}
         </span>
       </span>
       <span
         style={{
           fontFamily: "'Rethink Sans', sans-serif",
-          fontSize: isTablet ? "1.7vh" : "1.5vh",
+          fontSize: "1.5vh",
           fontWeight: 500,
           color: "#0EA5E9",
           textAlign: "right",

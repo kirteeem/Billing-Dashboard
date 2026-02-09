@@ -211,8 +211,8 @@ export default function Subscriptions() {
           style={{
             fontFamily: "Rethink Sans, sans-serif",
             fontWeight: 600,
-            fontSize: isMobile ? '6vw' : isTablet ? '4vw' : '2.08vw',
-            lineHeight: isMobile ? '7vw' : isTablet ? '5vw' : '2.5vw',
+            fontSize: isMobile ? '26px' : isTablet ? '4vw' : '2.08vw',
+            lineHeight: isMobile ? '32px' : isTablet ? '5vw' : '2.5vw',
             letterSpacing: isMobile ? '-0.1vw' : '-0.052vw',
             color: "rgba(15, 23, 41, 1)",
           }}
@@ -225,8 +225,8 @@ export default function Subscriptions() {
             marginTop: "0.6vh",
             fontFamily: "Rethink Sans, sans-serif",
             fontWeight: 400,
-            fontSize: isMobile ? '3.5vw' : isTablet ? '2.2vw' : '1.11vw',
-            lineHeight: isMobile ? '5vw' : isTablet ? '3vw' : '1.67vw',
+            fontSize: isMobile ? '16px' : isTablet ? '2.2vw' : '1.11vw',
+            lineHeight: isMobile ? '22px' : isTablet ? '3vw' : '1.67vw',
             color: "rgba(130, 138, 150, 1)",
           }}
         >
