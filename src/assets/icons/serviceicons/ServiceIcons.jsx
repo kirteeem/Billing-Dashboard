@@ -145,116 +145,79 @@ export const AWSIcon = () => (
     </defs>
   </svg>
 );
-export const StripeIcon = () => (
-  <svg
-    width="40"
-    height="40"
-    viewBox="0 0 40 40"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <rect width="40" height="40" rx="12" fill="#F3F5F7" />
-    <path d="M10 30.4H30V10.4H10V30.4Z" fill="#0F1729" />
-  </svg>
-);
-export const GoogleIcon = () => (
-  <svg
-    width="40"
-    height="40"
-    viewBox="0 0 40 41"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <g clipPath="url(#clip0_google)">
-      <path
-        d="M20.0305 40.0609C31.093 40.0609 40.0609 31.0929 40.0609 20.0304C40.0609 8.96793 31.093 0 20.0305 0C8.96795 0 0 8.96793 0 20.0304C0 31.0929 8.96795 40.0609 20.0305 40.0609Z"
-        fill="#E0E0E0"
-      />
-      <path
-        d="M20.0302 39.452C30.9246 39.452 39.7563 30.6204 39.7563 19.726C39.7563 8.83164 30.9246 0 20.0302 0C9.13586 0 0.304199 8.83164 0.304199 19.726C0.304199 30.6204 9.13586 39.452 20.0302 39.452Z"
-        fill="white"
-      />
 
-      <g mask="url(#mask0_google)">
-        <path
-          d="M5.72266 27.7626V11.9331L16.0727 19.8479L5.72266 27.7626Z"
-          fill="#FBBC05"
-        />
+
+
+export const StripeIcon = ({ size = 40 }) => {
+  return (
+    <div
+      style={{
+        width: size,
+        height: size,
+        borderRadius: 16,
+        background: "#EEF2F6",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div
+        style={{
+          width: size * 0.65,
+          height: size * 0.42,
+          borderRadius: 6,
+          background: "linear-gradient(135deg,#F6E7B2,#EAD18A)",
+          position: "relative",
+          boxShadow: "0 1px 2px rgba(0,0,0,0.1)",
+          fontSize: size * 0.14,
+          fontWeight: 600,
+          color: "#635BFF",
+          display: "flex",
+          alignItems: "flex-end",
+          justifyContent: "flex-start",
+          padding: "4px",
+        }}
+      >
+        stripe
+      </div>
+    </div>
+  );
+};
+
+
+export function GoogleIcon({ size = 40 }) {
+  return (
+    <svg
+      width={size}
+      height={(size * 41) / 40}
+      viewBox="0 0 40 41"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g clipPath="url(#clip0)">
+        <path d="M20.0305 40.0609C31.093 40.0609 40.0609 31.0929 40.0609 20.0304C40.0609 8.96793 31.093 0 20.0305 0C8.96795 0 0 8.96793 0 20.0304C0 31.0929 8.96795 40.0609 20.0305 40.0609Z" fill="#E0E0E0" />
+        <path d="M20.0302 39.452C30.9246 39.452 39.7563 30.6204 39.7563 19.726C39.7563 8.83164 30.9246 0 20.0302 0C9.13586 0 0.304199 8.83164 0.304199 19.726C0.304199 30.6204 9.13586 39.452 20.0302 39.452Z" fill="white" />
+
+        <mask id="mask0" maskUnits="userSpaceOnUse" x="6" y="6" width="28" height="28">
+          <path d="M32.8156 17.4125H20.3346V22.5876H27.5188C26.8491 25.8752 24.0485 27.7626 20.3346 27.7626C15.9511 27.7626 12.4199 24.2314 12.4199 19.8478C12.4199 15.4643 15.9511 11.9331 20.3346 11.9331C22.222 11.9331 23.9267 12.6028 25.2661 13.6987L29.1627 9.80217C26.7882 7.73215 23.7441 6.45361 20.3346 6.45361C12.9069 6.45361 6.94043 12.4201 6.94043 19.8478C6.94043 27.2755 12.9069 33.242 20.3346 33.242C27.0318 33.242 33.12 28.3714 33.12 19.8478C33.12 19.0564 32.9983 18.204 32.8156 17.4125Z" fill="white" />
+        </mask>
+
+        <g mask="url(#mask0)">
+          <path d="M5.72266 27.7626V11.9331L16.0727 19.8479L5.72266 27.7626Z" fill="#FBBC05" />
+          <path d="M5.72266 11.9329L16.0727 19.8477L20.3345 16.1339L34.9464 13.7594V5.23584H5.72266V11.9329Z" fill="#EA4335" />
+          <path d="M5.72266 27.7625L23.9875 13.7594L28.7972 14.3683L34.9464 5.23584V34.4596H5.72266V27.7625Z" fill="#34A853" />
+          <path d="M34.9467 34.4597L16.073 19.8479L13.6377 18.0214L34.9467 11.9331V34.4597Z" fill="#4285F4" />
+        </g>
       </g>
 
-      <g mask="url(#mask1_google)">
-        <path
-          d="M5.72266 11.9329L16.0727 19.8477L20.3345 16.1339L34.9464 13.7594V5.23584H5.72266V11.9329Z"
-          fill="#EA4335"
-        />
-      </g>
-
-      <g mask="url(#mask2_google)">
-        <path
-          d="M5.72266 27.7625L23.9875 13.7594L28.7972 14.3683L34.9464 5.23584V34.4596H5.72266V27.7625Z"
-          fill="#34A853"
-        />
-      </g>
-
-      <g mask="url(#mask3_google)">
-        <path
-          d="M34.9467 34.4597L16.073 19.8479L13.6377 18.0214L34.9467 11.9331V34.4597Z"
-          fill="#4285F4"
-        />
-      </g>
-    </g>
-
-    <defs>
-      <clipPath id="clip0_google">
-        <rect width="40" height="40.0609" fill="white" />
-      </clipPath>
-
-      <mask
-        id="mask0_google"
-        maskUnits="userSpaceOnUse"
-        x="6"
-        y="6"
-        width="28"
-        height="28"
-      >
-        <rect x="6" y="6" width="28" height="28" fill="white" />
-      </mask>
-
-      <mask
-        id="mask1_google"
-        maskUnits="userSpaceOnUse"
-        x="6"
-        y="6"
-        width="28"
-        height="28"
-      >
-        <rect x="6" y="6" width="28" height="28" fill="white" />
-      </mask>
-
-      <mask
-        id="mask2_google"
-        maskUnits="userSpaceOnUse"
-        x="6"
-        y="6"
-        width="28"
-        height="28"
-      >
-        <rect x="6" y="6" width="28" height="28" fill="white" />
-      </mask>
-
-      <mask
-        id="mask3_google"
-        maskUnits="userSpaceOnUse"
-        x="6"
-        y="6"
-        width="28"
-        height="28"
-      >
-        <rect x="6" y="6" width="28" height="28" fill="white" />
-      </mask>
-    </defs>
-  </svg>
-);
+      <defs>
+        <clipPath id="clip0">
+          <rect width="40" height="40.0609" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  );
+}
 
 
 export const ApiKeyIcon = ({ size = 40 }) => (
@@ -294,18 +257,23 @@ export const ApiKeyIcon = ({ size = 40 }) => (
 );
 
 export const ConnectedBadge = () => (
-  <svg width="100" height="24" viewBox="0 0 100 24" fill="none">
-    <rect width="100" height="24" rx="12" fill="#21C45D" fillOpacity="0.1" />
+  <svg width="110" height="24" viewBox="0 0 110 24" fill="none">
+    {/* background */}
+    <rect width="110" height="24" rx="12" fill="#21C45D" fillOpacity="0.1" />
+
+    {/* check icon */}
     <path
       d="M20 9L14.5 14.5L12 12"
       stroke="#21C45D"
-      strokeWidth="1"
+      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
+
+    {/* text */}
     <text
-      x="32"
-      y="16"
+      x="36"
+      y="15"
       fill="#21C45D"
       fontSize="12"
       fontWeight="500"
@@ -315,6 +283,7 @@ export const ConnectedBadge = () => (
     </text>
   </svg>
 );
+
 export const DisconnectedBadge = () => (
   <svg width="115" height="24" viewBox="0 0 115 24" fill="none">
     <rect width="115" height="24" rx="12" fill="#F3F5F7" />

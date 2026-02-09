@@ -1,6 +1,8 @@
 import DashboardCards from "./DashboardCards";
 import DashboardTable from "./DashboardTable";
 
+
+
 export default function Dashboard() {
   return (
     <section className="w-full flex flex-col px-4 md:px-0 mt-12 md:mt-0">

@@ -349,38 +349,34 @@ const AlertItem = ({ item, isMobile, isTablet }) => {
       </div>
 
       {/* TOGGLE SWITCH */}
-      <button
-        onClick={() => setEnabled(!enabled)}
+       <button
+      onClick={() => setEnabled(!enabled)}
+      style={{
+        width: 44,
+        height: 24,
+        borderRadius: 12,
+        background: enabled ? "#00B7FF" : "#E5E7EB",
+        border: "none",
+        cursor: "pointer",
+        position: "relative",
+        transition: "background 0.2s",
+        padding: 0,
+      }}
+    >
+      <div
         style={{
-          width: isMobile ? '12vw' : isTablet ? '8vw' : '3.05vw',
-          height: isMobile ? '6.5vw' : isTablet ? '4vw' : '2.66vh',
-          borderRadius: '9999px',
-          padding: isMobile ? '0.8vw' : '0.27vh',
-          backgroundColor: enabled ? '#0EA5E9' : '#E5E7EB',
-          transition: 'background-color 0.2s',
-          border: 'none',
-          cursor: 'pointer',
-          position: 'relative',
-          flexShrink: 0,
+          position: "absolute",
+          top: 2,
+          left: enabled ? 22 : 2,
+          width: 20,
+          height: 20,
+          borderRadius: "50%",
+          background: "white",
+          transition: "left 0.2s",
+          boxShadow: "0px 1px 2px rgba(0,0,0,0.15)",
         }}
-      >
-        <div
-          style={{
-            width: isMobile ? '5vw' : isTablet ? '3.2vw' : '1.11vw',
-            height: isMobile ? '5vw' : isTablet ? '3.2vw' : '2.11vh',
-            backgroundColor: 'white',
-            borderRadius: '50%',
-            transition: 'transform 0.2s',
-            transform: enabled 
-              ? isMobile 
-                ? 'translateX(5.5vw)' 
-                : isTablet 
-                  ? 'translateX(4.3vw)' 
-                  : 'translateX(1.38vw)'
-              : 'translateX(0)',
-          }}
-        />
-      </button>
+      />
+    </button>
     </div>
   );
 };
