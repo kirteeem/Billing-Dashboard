@@ -141,24 +141,25 @@ const DashboardTable = () => {
             <div>
               <h3
                 style={{
-                  fontFamily: "'Rethink Sans', sans-serif",
-                  fontSize: isMobile ? "4vw" : isTablet ? "20px" : "1.2vw",
-                  fontWeight: 600,
-                  lineHeight: isMobile ? "4vh" : isTablet ? "28px" : "3vh",
+                fontSize: isMobile ? "4vw" : isTablet ? "20px" : "18px",
+fontWeight: 600,
+lineHeight: isMobile ? "4vh" : isTablet ? "28px" : "28px",
+letterSpacing: "-0.45px",
                   color: "rgba(15, 23, 41, 1)",
                 }}
               >
                 Upcoming Payments
               </h3>
-              <p
-                style={{
-                  fontFamily: "'Rethink Sans', sans-serif",
-                  fontSize: isMobile ? "3.5vw" : isTablet ? "14px" : "0.9vw",
-                  color: "rgba(130, 138, 150, 1)",
-                }}
-              >
-                Next 30 days
-              </p>
+           <p
+  style={{
+    fontFamily: "'Rethink Sans', sans-serif",
+    fontSize: isMobile ? "3.5vw" : isTablet ? "14px" : "0.9vw",
+    color: "rgba(130, 138, 150, 1)",
+  }}
+>
+  Next 30 days
+</p>
+
             </div>
 
             {!isMobile && !isTablet && <ViewAllButton />}
@@ -329,50 +330,54 @@ const PaymentItem = ({
       </div>
 
       <div>
-        <p
-          style={{
-            fontFamily: "'Rethink Sans', sans-serif",
-            fontSize: isMobile ? "3.8vw" : isTablet ? "16px" : "1.1vw",
-            fontWeight: 500,
-            color: "#0F172A",
-          }}
-        >
-          {name}
-        </p>
-        <p
-          style={{
-            fontFamily: "'Rethink Sans', sans-serif",
-            fontSize: isMobile ? "3.2vw" : isTablet ? "14px" : "0.9vw",
-            color: "#64748B",
-          }}
-        >
-          {date}
-        </p>
+   <p
+  style={{
+    fontFamily: "'Rethink Sans', sans-serif",
+    fontSize: isMobile ? "3.8vw" : isTablet ? "16px" : "1.1vw",
+    fontWeight: 500,
+    color: "#0F172A",
+  }}
+>
+  {name}
+</p>
+
+      <p
+  style={{
+    fontFamily: "'Rethink Sans', sans-serif",
+    fontSize: isMobile ? "3.2vw" : isTablet ? "14px" : "0.9vw",
+    color: "#64748B",
+  }}
+>
+  {date}
+</p>
+
       </div>
     </div>
 
     {/* RIGHT */}
     <div style={{ textAlign: "right" }}>
-      <p
-        style={{
-          fontFamily: "'Rethink Sans', sans-serif",
-          fontSize: isMobile ? "3.8vw" : isTablet ? "16px" : "1.1vw",
-          fontWeight: 600,
-          color: "#0F172A",
-        }}
-      >
-        {amount}
-      </p>
-      <p
-        style={{
-          fontFamily: "'Rethink Sans', sans-serif",
-          fontSize: isMobile ? "3vw" : isTablet ? "13px" : "0.85vw",
-          color: statusText.includes("overdue") ? "#DC2626" : statusColor,
-          fontWeight: statusText.includes("overdue") ? 600 : 400,
-        }}
-      >
-        {statusText}
-      </p>
+   <p
+  style={{
+    fontFamily: "'Rethink Sans', sans-serif",
+    fontSize: isMobile ? "3.8vw" : isTablet ? "16px" : "1.1vw",
+    fontWeight: 600,
+    color: "#0F172A",
+  }}
+>
+  {amount}
+</p>
+
+   <p
+  style={{
+    fontFamily: "'Rethink Sans', sans-serif",
+    fontSize: isMobile ? "3vw" : isTablet ? "13px" : "0.85vw",
+    color: statusText.includes("overdue") ? "#DC2626" : statusColor,
+    fontWeight: statusText.includes("overdue") ? 600 : 400,
+  }}
+>
+  {statusText}
+</p>
+
     </div>
   </div>
 );
